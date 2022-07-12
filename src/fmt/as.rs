@@ -1,5 +1,8 @@
 mod display;
 
+#[cfg(feature = "serde_support")]
+use serde::{Deserialize, Serialize};
+
 /// Formats an SQL `AS` clause.
 ///
 /// # Warnings
@@ -15,5 +18,6 @@ mod display;
 ///
 /// assert_eq!(As(WithIdentifier("foo", "a"), "MyAlias").to_string(), "foo.a AS MyAlias");
 /// ```
+#[cfg_attr(feature = "serde_support", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct As<TIdent, TAs>(pub TIdent, pub TAs);

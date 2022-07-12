@@ -1,5 +1,8 @@
 mod display;
 
+#[cfg(feature = "serde_support")]
+use serde::{Deserialize, Serialize};
+
 /// Formats an SQL `CAST` expression.
 ///
 /// # Warnings
@@ -15,5 +18,6 @@ mod display;
 ///
 /// assert_eq!(TypeCast("foo.a", "numeric").to_string(), " CAST (foo.a AS numeric)");
 /// ```
+#[cfg_attr(feature = "serde_support", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct TypeCast<TColumn, TCast>(pub TColumn, pub TCast);
