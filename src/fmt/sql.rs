@@ -21,6 +21,8 @@
 //! }
 //! ```
 
+#![allow(missing_docs)]
+
 pub const AND: &str = " AND ";
 pub const AS: &str = " AS ";
 pub const BETWEEN: &str = " BETWEEN ";

@@ -4,6 +4,13 @@
 //! Contains various tools, such as those to [generate](clinvoice_adapter::fmt) SQL and [reference
 //! table columns](clinvoice_adapter::schema::columns).
 //!
+//! # Features
+//!
+//! * `serde_support` enables the use of [`serde`] with the types in this crate.
+//! * `sqlx_runtime_tokio_rustls` enables [`sqlx`]'s `runtime-tokio-rustls` feature, which is only
+//!   set so that the project can be built on its own.
+//!   * __This crate should be compiled with__ `--no-default-features`.
+//!
 //! # Usage
 //!
 //! If you are looking to create a new adapter:
@@ -16,6 +23,8 @@
 //! 5. Write add new `match` arms in areas that `match` on [`Adapters`][adapters].
 //!
 //! [adapters]: clinvoice_config::Adapters
+
+#![warn(missing_docs)]
 
 mod deletable;
 pub mod fmt;
