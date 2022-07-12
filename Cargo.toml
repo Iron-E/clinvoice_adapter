@@ -22,7 +22,7 @@ sqlx = "0.5"
 
 [dev-dependencies]
 pretty_assertions = "1"
-sqlx = {features = ["postgres", "runtime-tokio-rustls"], version = "0.5"}
+sqlx = {features = ["postgres"], version = "0.5"}
 
 [features]
 default = ["sqlx_runtime_tokio_rustls"]
