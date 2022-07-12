@@ -17,6 +17,7 @@ use super::{sql, ColumnsToSql, TableToSql};
 /// well.
 pub trait QueryBuilderExt<'args>: sealed::Sealed
 {
+	/// The [`Database`] which the [query](QueryBuilder) is being written for.
 	type Db: Database;
 
 	/// Add a semicolon to the end of the current query and then [build](QueryBuilder::build) it.
