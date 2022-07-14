@@ -1,5 +1,5 @@
 use clinvoice_match::MatchContact;
-use clinvoice_schema::Contact;
+use clinvoice_schema::{Contact, ContactKind};
 use sqlx::{Executor, Pool, Result};
 
 use crate::{Deletable, Updatable};
@@ -15,7 +15,8 @@ pub trait ContactInfoAdapter:
 	/// If you want to update an existing [`Contact`] instead, try [`Updatable::update`].
 	async fn create(
 		connection: impl 'async_trait + Executor<'_, Database = <Self as Deletable>::Db> + Send,
-		contact_info: impl 'async_trait + Iterator<Item = &Contact> + Send,
+		kind: ContactKind,
+		name: String,
 	) -> Result<()>;
 
 	/// Retrieve all [`Contact`]s (via `connection`) that match the `match_condition`.
