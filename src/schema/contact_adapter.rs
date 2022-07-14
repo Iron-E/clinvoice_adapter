@@ -6,7 +6,7 @@ use crate::{Deletable, Updatable};
 
 /// Implementors of this trait may act as an [adapter](super) for [`Contact`]s.
 #[async_trait::async_trait]
-pub trait ContactInfoAdapter:
+pub trait ContactAdapter:
 	Deletable<Entity = Contact>
 	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
@@ -17,7 +17,7 @@ pub trait ContactInfoAdapter:
 		connection: impl 'async_trait + Executor<'_, Database = <Self as Deletable>::Db> + Send,
 		kind: ContactKind,
 		name: String,
-	) -> Result<()>;
+	) -> Result<<Self as Deletable>::Entity>;
 
 	/// Retrieve all [`Contact`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(
