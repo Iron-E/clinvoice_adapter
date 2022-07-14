@@ -1,13 +1,13 @@
 mod columns_to_sql;
 mod table_to_sql;
 
-#[cfg(feature = "serde_support")]
+#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
 use crate::fmt::{As, TableToSql, WithIdentifier};
 
 /// The names of the columns of the `organizations` table.
-#[cfg_attr(feature = "serde_support", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct OrganizationColumns<T>
 {

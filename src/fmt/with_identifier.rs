@@ -1,6 +1,6 @@
 mod display;
 
-#[cfg(feature = "serde_support")]
+#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
 /// Formats a dot-access of `TColumn`.
@@ -18,6 +18,6 @@ use serde::{Deserialize, Serialize};
 ///
 /// assert_eq!(WithIdentifier("foo", "a").to_string(), "foo.a");
 /// ```
-#[cfg_attr(feature = "serde_support", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct WithIdentifier<TIdent, TColumn>(pub TIdent, pub TColumn);

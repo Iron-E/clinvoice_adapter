@@ -6,7 +6,7 @@
 //!
 //! # Features
 //!
-//! * `serde_support` enables the use of [`serde`] with the types in this crate.
+//! * `serde` enables the use of [`serde`] with the types in this crate.
 //! * `sqlx_runtime_tokio_rustls` enables [`sqlx`]'s `runtime-tokio-rustls` feature, which is only
 //!   set so that the project can be built on its own.
 //!   * __This crate should be compiled with__ `--no-default-features`.

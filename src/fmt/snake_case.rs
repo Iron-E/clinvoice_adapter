@@ -1,7 +1,7 @@
 mod display;
 mod from;
 
-#[cfg(feature = "serde_support")]
+#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
 use core::fmt::Display;
@@ -49,7 +49,7 @@ use core::fmt::Display;
 ///   job_client_location_alias_2.to_string()
 /// );
 /// ```
-#[cfg_attr(feature = "serde_support", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum SnakeCase<TLeft, TRight>
 where
