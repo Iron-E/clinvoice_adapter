@@ -9,7 +9,7 @@ pub trait Initializable
 	type Db: Database;
 
 	/// Initialize the [`Initializable::Db`] at the given `connection`.
-	async fn init(
-		connection: impl 'async_trait + Acquire<'_, Database = Self::Db> + Send,
-	) -> Result<()>;
+	async fn init<'c, TConn>(connection: TConn) -> Result<()>
+	where
+		TConn: Acquire<'c, Database = Self::Db> + Send;
 }

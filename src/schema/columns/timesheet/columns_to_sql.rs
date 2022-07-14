@@ -5,9 +5,9 @@ use sqlx::{Database, QueryBuilder};
 use super::TimesheetColumns;
 use crate::fmt::{ColumnsToSql, QueryBuilderExt};
 
-impl<T> ColumnsToSql for TimesheetColumns<T>
+impl<TColumn> ColumnsToSql for TimesheetColumns<TColumn>
 where
-	T: Copy + Display,
+	TColumn: Copy + Display,
 {
 	fn push_to<Db>(&self, query: &mut QueryBuilder<Db>)
 	where
@@ -23,9 +23,10 @@ where
 			.push(self.work_notes);
 	}
 
-	fn push_set_to<Db>(&self, query: &mut QueryBuilder<Db>, values_alias: impl Copy + Display)
+	fn push_set_to<TDb, TValues>(&self, query: &mut QueryBuilder<TDb>, values_alias: TValues)
 	where
-		Db: Database,
+		TDb: Database,
+		TValues: Copy + Display,
 	{
 		let values_columns = self.scope(values_alias);
 		query
@@ -40,13 +41,15 @@ where
 			.push_equal(self.work_notes, values_columns.work_notes);
 	}
 
-	fn push_update_where_to<Db>(
+	fn push_update_where_to<TDb, TTable, TValues>(
 		&self,
-		query: &mut QueryBuilder<Db>,
-		table_alias: impl Copy + Display,
-		values_alias: impl Copy + Display,
+		query: &mut QueryBuilder<TDb>,
+		table_alias: TTable,
+		values_alias: TValues,
 	) where
-		Db: Database,
+		TDb: Database,
+		TTable: Copy + Display,
+		TValues: Copy + Display,
 	{
 		query.push_equal(self.scope(table_alias).id, self.scope(values_alias).id);
 	}

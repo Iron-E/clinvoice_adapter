@@ -1,6 +1,6 @@
 use clinvoice_match::MatchExpense;
 use clinvoice_schema::{Expense, Id, Money};
-use sqlx::{Executor, Pool, Result};
+use sqlx::{Pool, Result};
 
 use crate::{Deletable, Updatable};
 
@@ -17,7 +17,7 @@ pub trait ExpensesAdapter:
 	/// `expenses` is a slice of `(String, Money, String)`, which represents `(category, cost,
 	/// description)` for the created [`Expense`]s.
 	async fn create(
-		connection: impl 'async_trait + Executor<'_, Database = <Self as Deletable>::Db> + Send,
+		connection: &Pool<<Self as Deletable>::Db>,
 		expenses: Vec<(String, Money, String)>,
 		timesheet_id: Id,
 	) -> Result<Vec<Expense>>;

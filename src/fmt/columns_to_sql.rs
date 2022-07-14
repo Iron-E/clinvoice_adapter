@@ -91,20 +91,23 @@ pub trait ColumnsToSql: TableToSql
 	///     WHERE E.id=E_V.id;"
 	/// );
 	/// ```
-	fn push_set_to<Db>(&self, query: &mut QueryBuilder<Db>, values_alias: impl Copy + Display)
+	fn push_set_to<TDb, TValues>(&self, query: &mut QueryBuilder<TDb>, values_alias: TValues)
 	where
-		Db: Database;
+		TDb: Database,
+		TValues: Copy + Display;
 
 	/// Push the `WHERE` clause of an `UPDATE` statement (`WHERE` keyword not included) to the `query`, e.g.:
 	///
 	/// # Examples
 	///
 	/// * See [`ColumnsToSql::push_set_to`].
-	fn push_update_where_to<Db>(
+	fn push_update_where_to<TDb, TTable, TValues>(
 		&self,
-		query: &mut QueryBuilder<Db>,
-		table_alias: impl Copy + Display,
-		values_alias: impl Copy + Display,
+		query: &mut QueryBuilder<TDb>,
+		table_alias: TTable,
+		values_alias: TValues,
 	) where
-		Db: Database;
+		TDb: Database,
+		TTable: Copy + Display,
+		TValues: Copy + Display;
 }
