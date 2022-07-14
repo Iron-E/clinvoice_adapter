@@ -1,10 +1,10 @@
 mod display;
 mod from;
 
+use core::fmt::Display;
+
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-
-use core::fmt::Display;
 
 /// Wraps [`Display`] impls to produce a new value that [`Display`]s like a `snake_case`
 /// identifier.
