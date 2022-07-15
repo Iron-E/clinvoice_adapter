@@ -3,6 +3,7 @@ use clinvoice_schema::{
 	chrono::{DateTime, Utc},
 	Employee,
 	Job,
+	Money,
 	Timesheet,
 };
 use sqlx::{Acquire, Pool, Result};
@@ -19,12 +20,13 @@ pub trait TimesheetAdapter:
 	async fn create<'c, TConn>(
 		connection: TConn,
 		employee: Employee,
+		expenses: Vec<(String, Money, String)>,
 		job: Job,
 		time_begin: DateTime<Utc>,
 		time_end: Option<DateTime<Utc>>,
 	) -> Result<<Self as Deletable>::Entity>
 	where
-		TConn: Acquire<'c, Database = <Self as Deletable>::Db>;
+		TConn: Acquire<'c, Database = <Self as Deletable>::Db> + Send;
 
 	/// Retrieve all [`Timesheet`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(
