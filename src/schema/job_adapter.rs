@@ -7,7 +7,7 @@ use clinvoice_schema::{
 	Job,
 	Organization,
 };
-use sqlx::{Executor, Pool, Result};
+use sqlx::{Pool, Result};
 
 use crate::{Deletable, Updatable};
 
@@ -19,8 +19,8 @@ pub trait JobAdapter:
 {
 	/// Initialize and return a new [`Job`] via the `connection`.
 	#[allow(clippy::too_many_arguments)]
-	async fn create<'c, TConn>(
-		connection: TConn,
+	async fn create(
+		connection: &Pool<<Self as Deletable>::Db>,
 		client: Organization,
 		date_close: Option<DateTime<Utc>>,
 		date_open: DateTime<Utc>,
@@ -28,9 +28,7 @@ pub trait JobAdapter:
 		invoice: Invoice,
 		notes: String,
 		objectives: String,
-	) -> Result<<Self as Deletable>::Entity>
-	where
-		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
+	) -> Result<<Self as Deletable>::Entity>;
 
 	/// Retrieve all [`Job`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(

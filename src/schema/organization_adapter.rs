@@ -1,6 +1,6 @@
 use clinvoice_match::MatchOrganization;
 use clinvoice_schema::{Location, Organization};
-use sqlx::{Executor, Pool, Result};
+use sqlx::{Pool, Result};
 
 use crate::{Deletable, Updatable};
 
@@ -11,13 +11,11 @@ pub trait OrganizationAdapter:
 	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Organization`] via the `connection`.
-	async fn create<'c, TConn>(
-		connection: TConn,
+	async fn create(
+		connection: &Pool<<Self as Deletable>::Db>,
 		location: Location,
 		name: String,
-	) -> Result<<Self as Deletable>::Entity>
-	where
-		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
+	) -> Result<<Self as Deletable>::Entity>;
 
 	/// Retrieve all [`Organization`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(
