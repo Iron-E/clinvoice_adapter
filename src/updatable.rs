@@ -23,5 +23,5 @@ pub trait Updatable
 	where
 		'e: 'i,
 		Self::Entity: 'e,
-		TIter: Iterator<Item = &'i Self::Entity> + Send;
+		TIter: Clone + Iterator<Item = &'i Self::Entity> + Send;
 }
