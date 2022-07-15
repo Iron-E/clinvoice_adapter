@@ -3,7 +3,6 @@ use clinvoice_schema::{
 	chrono::{DateTime, Utc},
 	Employee,
 	Job,
-	Money,
 	Timesheet,
 };
 use sqlx::{Executor, Pool, Result};
@@ -20,7 +19,6 @@ pub trait TimesheetAdapter:
 	async fn create<'c, TConn>(
 		connection: TConn,
 		employee: Employee,
-		expenses: Vec<(String, Money, String)>,
 		job: Job,
 		time_begin: DateTime<Utc>,
 		time_end: Option<DateTime<Utc>>,
