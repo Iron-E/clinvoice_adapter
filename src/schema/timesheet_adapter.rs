@@ -5,7 +5,7 @@ use clinvoice_schema::{
 	Job,
 	Timesheet,
 };
-use sqlx::{Executor, Pool, Result};
+use sqlx::{Acquire, Pool, Result};
 
 use crate::{Deletable, Updatable};
 
@@ -24,7 +24,7 @@ pub trait TimesheetAdapter:
 		time_end: Option<DateTime<Utc>>,
 	) -> Result<<Self as Deletable>::Entity>
 	where
-		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
+		TConn: Acquire<'c, Database = <Self as Deletable>::Db>;
 
 	/// Retrieve all [`Timesheet`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(
