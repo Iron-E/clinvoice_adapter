@@ -9,9 +9,9 @@ impl<TColumn> ColumnsToSql for TimesheetColumns<TColumn>
 where
 	TColumn: Copy + Display,
 {
-	fn push_to<Db>(&self, query: &mut QueryBuilder<Db>)
+	fn push_to<TDb>(&self, query: &mut QueryBuilder<TDb>)
 	where
-		Db: Database,
+		TDb: Database,
 	{
 		query
 			.separated(',')

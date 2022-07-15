@@ -14,9 +14,9 @@ pub trait ColumnsToSql: TableToSql
 	///
 	/// * See [`EmployeeColumns::unique`](crate::schema::columns::EmployeeColumns::unique), which uses
 	///   [`QueryBuilderExt::push_columns`](crate::fmt::QueryBuilderExt::push_columns).
-	fn push_to<Db>(&self, query: &mut QueryBuilder<Db>)
+	fn push_to<TDb>(&self, query: &mut QueryBuilder<TDb>)
 	where
-		Db: Database;
+		TDb: Database;
 
 	/// Push the `SET` clause (keyword not included) to the `query`.
 	///

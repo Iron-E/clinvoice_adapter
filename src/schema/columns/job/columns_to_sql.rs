@@ -9,9 +9,9 @@ impl<T> ColumnsToSql for JobColumns<T>
 where
 	T: Copy + Display,
 {
-	fn push_to<Db>(&self, query: &mut QueryBuilder<Db>)
+	fn push_to<TDb>(&self, query: &mut QueryBuilder<TDb>)
 	where
-		Db: Database,
+		TDb: Database,
 	{
 		query
 			.separated(',')
