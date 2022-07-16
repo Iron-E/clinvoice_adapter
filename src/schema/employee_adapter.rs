@@ -1,6 +1,6 @@
 use clinvoice_match::MatchEmployee;
 use clinvoice_schema::Employee;
-use sqlx::{Pool, Result, Transaction};
+use sqlx::{Executor, Pool, Result};
 
 use crate::{Deletable, Updatable};
 
@@ -12,11 +12,13 @@ pub trait EmployeeAdapter:
 {
 	/// Initialize and return a new [`Employee`] via the `connection`.
 	async fn create<'c, TConn>(
-		connection: &mut Transaction<<Self as Deletable>::Db>,
+		connection: TConn,
 		name: String,
 		status: String,
 		title: String,
-	) -> Result<<Self as Deletable>::Entity>;
+	) -> Result<<Self as Deletable>::Entity>
+	where
+		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
 
 	/// Retrieve all [`Employee`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(

@@ -1,6 +1,6 @@
 use clinvoice_match::MatchLocation;
 use clinvoice_schema::Location;
-use sqlx::{Pool, Result, Transaction};
+use sqlx::{Executor, Pool, Result};
 
 use crate::{Deletable, Updatable};
 
@@ -11,11 +11,13 @@ pub trait LocationAdapter:
 	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Location`] via the `connection`.
-	async fn create(
-		connection: &mut Transaction<<Self as Deletable>::Db>,
+	async fn create<'c, TConn>(
+		connection: TConn,
 		name: String,
 		outer: Option<<Self as Deletable>::Entity>,
-	) -> Result<<Self as Deletable>::Entity>;
+	) -> Result<<Self as Deletable>::Entity>
+	where
+		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
 
 	/// Retrieve all [`Location`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(

@@ -1,6 +1,6 @@
 use clinvoice_match::MatchExpense;
 use clinvoice_schema::{Expense, Id, Money};
-use sqlx::{Pool, Result, Transaction};
+use sqlx::{Executor, Pool, Result};
 
 use crate::{Deletable, Updatable};
 
@@ -16,11 +16,13 @@ pub trait ExpensesAdapter:
 	///
 	/// `expenses` is a slice of `(String, Money, String)`, which represents `(category, cost,
 	/// description)` for the created [`Expense`]s.
-	async fn create(
-		connection: &mut Transaction<<Self as Deletable>::Db>,
+	async fn create<'c, TConn>(
+		connection: TConn,
 		expenses: Vec<(String, Money, String)>,
 		timesheet_id: Id,
-	) -> Result<Vec<Expense>>;
+	) -> Result<Vec<Expense>>
+	where
+		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
 
 	/// Retrieve all [`Employee`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(
