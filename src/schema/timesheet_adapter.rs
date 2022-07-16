@@ -16,7 +16,8 @@ pub trait TimesheetAdapter:
 	Deletable<Entity = Timesheet>
 	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
-	/// Initialize and return a new [`Timesheet`] via the `connection`.
+	/// Initialize and return a new [`Timesheet`] via the `connection`. Will not
+	/// [`commit`](Transaction::commit) changes.
 	async fn create(
 		connection: &mut Transaction<<Self as Deletable>::Db>,
 		employee: Employee,
