@@ -1,6 +1,6 @@
 use clinvoice_match::MatchContact;
 use clinvoice_schema::{Contact, ContactKind};
-use sqlx::{Executor, Pool, Result};
+use sqlx::{Pool, Result, Transaction};
 
 use crate::{Deletable, Updatable};
 
@@ -13,13 +13,11 @@ pub trait ContactAdapter:
 	/// Initialize all of the [`Contact`]s in `contact_info` via the `connection`.
 	///
 	/// If you want to update an existing [`Contact`] instead, try [`Updatable::update`].
-	async fn create<'c, TConn>(
-		connection: TConn,
+	async fn create(
+		connection: &mut Transaction<<Self as Deletable>::Db>,
 		kind: ContactKind,
 		name: String,
-	) -> Result<<Self as Deletable>::Entity>
-	where
-		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
+	) -> Result<<Self as Deletable>::Entity>;
 
 	/// Retrieve all [`Contact`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(

@@ -6,7 +6,7 @@ use clinvoice_schema::{
 	Money,
 	Timesheet,
 };
-use sqlx::{Acquire, Pool, Result};
+use sqlx::{Pool, Result, Transaction};
 
 use crate::{Deletable, Updatable};
 
@@ -17,16 +17,14 @@ pub trait TimesheetAdapter:
 	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Timesheet`] via the `connection`.
-	async fn create<'c, TConn>(
-		connection: TConn,
+	async fn create(
+		connection: &mut Transaction<<Self as Deletable>::Db>,
 		employee: Employee,
 		expenses: Vec<(String, Money, String)>,
 		job: Job,
 		time_begin: DateTime<Utc>,
 		time_end: Option<DateTime<Utc>>,
-	) -> Result<<Self as Deletable>::Entity>
-	where
-		TConn: Acquire<'c, Database = <Self as Deletable>::Db> + Send;
+	) -> Result<<Self as Deletable>::Entity>;
 
 	/// Retrieve all [`Timesheet`]s (via `connection`) that match the `match_condition`.
 	async fn retrieve(
