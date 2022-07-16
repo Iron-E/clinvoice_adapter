@@ -7,14 +7,15 @@ use clinvoice_schema::{
 	Job,
 	Organization,
 };
-use sqlx::{Executor, Pool, Result};
+use sqlx::{Executor, Result};
 
-use crate::{Deletable, Updatable};
+use crate::{Deletable, Retrievable, Updatable};
 
 /// Implementors of this trait may act as an [adapter](super) for [`Job`]s.
 #[async_trait::async_trait]
 pub trait JobAdapter:
 	Deletable<Entity = Job>
+	+ Retrievable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity, Match = MatchJob>
 	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Job`] via the `connection`.
@@ -31,10 +32,4 @@ pub trait JobAdapter:
 	) -> Result<<Self as Deletable>::Entity>
 	where
 		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
-
-	/// Retrieve all [`Job`]s (via `connection`) that match the `match_condition`.
-	async fn retrieve(
-		connection: &Pool<<Self as Deletable>::Db>,
-		match_condition: &MatchJob,
-	) -> Result<Vec<<Self as Deletable>::Entity>>;
 }

@@ -1,14 +1,18 @@
 use clinvoice_match::MatchExpense;
 use clinvoice_schema::{Expense, Id, Money};
-use sqlx::{Executor, Pool, Result};
+use sqlx::{Executor, Result};
 
-use crate::{Deletable, Updatable};
+use crate::{Deletable, Retrievable, Updatable};
 
 /// Implementors of this trait may act as an [adapter](super) for [`Employee`]s.
 #[async_trait::async_trait]
 pub trait ExpensesAdapter:
 	Deletable<Entity = Expense>
-	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
+	+ Retrievable<
+		Db = <Self as Deletable>::Db,
+		Entity = <Self as Deletable>::Entity,
+		Match = MatchExpense,
+	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return new [`Expense`]s via the `connection`.
 	///
@@ -23,10 +27,4 @@ pub trait ExpensesAdapter:
 	) -> Result<Vec<Expense>>
 	where
 		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
-
-	/// Retrieve all [`Employee`]s (via `connection`) that match the `match_condition`.
-	async fn retrieve(
-		connection: &Pool<<Self as Deletable>::Db>,
-		match_condition: &MatchExpense,
-	) -> Result<Vec<<Self as Deletable>::Entity>>;
 }

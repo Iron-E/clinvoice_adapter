@@ -29,11 +29,13 @@
 mod deletable;
 pub mod fmt;
 mod initializable;
+mod retrievable;
 pub mod schema;
 mod updatable;
 mod write_where_clause;
 
 pub use deletable::Deletable;
 pub use initializable::Initializable;
+pub use retrievable::Retrievable;
 pub use updatable::Updatable;
 pub use write_where_clause::{WriteContext, WriteWhereClause};

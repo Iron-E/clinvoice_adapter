@@ -6,15 +6,19 @@ use clinvoice_schema::{
 	Money,
 	Timesheet,
 };
-use sqlx::{Pool, Result, Transaction};
+use sqlx::{Result, Transaction};
 
-use crate::{Deletable, Updatable};
+use crate::{Deletable, Retrievable, Updatable};
 
 /// Implementors of this trait may act as an [adapter](super) for [`Timesheet`]s.
 #[async_trait::async_trait]
 pub trait TimesheetAdapter:
 	Deletable<Entity = Timesheet>
-	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
+	+ Retrievable<
+		Db = <Self as Deletable>::Db,
+		Entity = <Self as Deletable>::Entity,
+		Match = MatchTimesheet,
+	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Timesheet`] via the `connection`. Will not
 	/// [`commit`](Transaction::commit) changes.
@@ -26,10 +30,4 @@ pub trait TimesheetAdapter:
 		time_begin: DateTime<Utc>,
 		time_end: Option<DateTime<Utc>>,
 	) -> Result<<Self as Deletable>::Entity>;
-
-	/// Retrieve all [`Timesheet`]s (via `connection`) that match the `match_condition`.
-	async fn retrieve(
-		connection: &Pool<<Self as Deletable>::Db>,
-		match_condition: &MatchTimesheet,
-	) -> Result<Vec<<Self as Deletable>::Entity>>;
 }
