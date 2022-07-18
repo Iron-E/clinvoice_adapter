@@ -29,5 +29,6 @@ pub trait TimesheetAdapter:
 		job: Job,
 		time_begin: DateTime<Utc>,
 		time_end: Option<DateTime<Utc>>,
+		work_notes: String,
 	) -> Result<<Self as Deletable>::Entity>;
 }
