@@ -1,7 +1,7 @@
 # See https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
 name = "clinvoice-adapter"
-version = "0.15.0"
+version = "0.15.1"
 authors = ["Iron-E <code.iron.e@gmail.com>"]
 description = "Shared adapter definitions for CLInvoice."
 
@@ -18,11 +18,11 @@ clinvoice-schema = {branch = "release/0.9", git = "https://github.com/Iron-E/cli
 async-trait = "0.1"
 futures = "0.3"
 serde = {optional = true, version="1"}
-sqlx = "0.5"
+sqlx = "0.6"
 
 [dev-dependencies]
 pretty_assertions = "1"
-sqlx = {features = ["postgres"], version = "0.5"}
+sqlx = {features = ["postgres"]}
 
 [features]
 default = ["sqlx_runtime_tokio_rustls"]
