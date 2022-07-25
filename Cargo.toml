@@ -1,7 +1,7 @@
 # See https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
 name = "clinvoice-adapter"
-version = "0.16.0"
+version = "0.16.3"
 authors = ["Iron-E <code.iron.e@gmail.com>"]
 description = "Shared adapter definitions for CLInvoice."
 
@@ -25,6 +25,6 @@ pretty_assertions = "1"
 sqlx = {features = ["postgres"], version = "0.5"}
 
 [features]
-default = ["sqlx_runtime_tokio_rustls"]
+default = ["sqlx-runtime-tokio-rustls"]
 serde = ["serde/derive"]
-sqlx_runtime_tokio_rustls = ["sqlx/runtime-tokio-rustls"]
+sqlx-runtime-tokio-rustls = ["sqlx/runtime-tokio-rustls"]
