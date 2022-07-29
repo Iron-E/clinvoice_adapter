@@ -45,6 +45,7 @@ impl<T> ContactColumns<T>
 	/// # See also
 	///
 	/// * [`WithIdentifier`]
+	#[allow(clippy::missing_const_for_fn)]
 	pub fn scope<TAlias>(self, alias: TAlias) -> ContactColumns<WithIdentifier<TAlias, T>>
 	where
 		TAlias: Copy,

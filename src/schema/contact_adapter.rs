@@ -17,11 +17,11 @@ pub trait ContactAdapter:
 	/// Initialize all of the [`Contact`]s in `contact_info` via the `connection`.
 	///
 	/// If you want to update an existing [`Contact`] instead, try [`Updatable::update`].
-	async fn create<'c, TConn>(
+	async fn create<'connection, TConn>(
 		connection: TConn,
 		kind: ContactKind,
 		name: String,
 	) -> Result<<Self as Deletable>::Entity>
 	where
-		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
+		TConn: Executor<'connection, Database = <Self as Deletable>::Db>;
 }

@@ -50,6 +50,7 @@ impl<T> JobColumns<T>
 	/// # See also
 	///
 	/// * [`As`]
+	#[allow(clippy::missing_const_for_fn)]
 	pub fn r#as<TAlias>(self, aliased: JobColumns<TAlias>) -> JobColumns<As<T, TAlias>>
 	{
 		JobColumns {
@@ -82,6 +83,7 @@ impl<T> JobColumns<T>
 	/// # See also
 	///
 	/// * [`WithIdentifier`]
+	#[allow(clippy::missing_const_for_fn)]
 	pub fn scope<TAlias>(self, alias: TAlias) -> JobColumns<WithIdentifier<TAlias, T>>
 	where
 		TAlias: Copy,
@@ -106,6 +108,7 @@ impl<T> JobColumns<T>
 	/// # See also
 	///
 	/// * [`TypeCast`]
+	#[allow(clippy::missing_const_for_fn)]
 	pub fn typecast<TCast>(self, cast: TCast) -> JobColumns<TypeCast<T, TCast>>
 	where
 		TCast: Copy,

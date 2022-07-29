@@ -1,5 +1,4 @@
-use core::fmt::{Display, Result};
-use std::fmt::Formatter;
+use core::fmt::{Display, Formatter, Result};
 
 use super::SnakeCase;
 

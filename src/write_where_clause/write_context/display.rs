@@ -9,9 +9,9 @@ impl Display for WriteContext
 	{
 		match self
 		{
-			WriteContext::AcceptingAnotherWhereCondition => sql::AND.fmt(f),
-			WriteContext::BeforeWhereClause => sql::WHERE.fmt(f),
-			WriteContext::InWhereCondition => Ok(()),
+			Self::AcceptingAnotherWhereCondition => sql::AND.fmt(f),
+			Self::BeforeWhereClause => sql::WHERE.fmt(f),
+			Self::InWhereCondition => Ok(()),
 		}
 	}
 }

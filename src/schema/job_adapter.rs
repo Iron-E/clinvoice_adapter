@@ -20,7 +20,7 @@ pub trait JobAdapter:
 {
 	/// Initialize and return a new [`Job`] via the `connection`.
 	#[allow(clippy::too_many_arguments)]
-	async fn create<'c, TConn>(
+	async fn create<'connection, TConn>(
 		connection: TConn,
 		client: Organization,
 		date_close: Option<DateTime<Utc>>,
@@ -31,5 +31,5 @@ pub trait JobAdapter:
 		objectives: String,
 	) -> Result<<Self as Deletable>::Entity>
 	where
-		TConn: Executor<'c, Database = <Self as Deletable>::Db>;
+		TConn: Executor<'connection, Database = <Self as Deletable>::Db>;
 }

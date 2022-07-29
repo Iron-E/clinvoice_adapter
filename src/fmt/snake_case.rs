@@ -113,7 +113,7 @@ where
 	{
 		match self
 		{
-			SnakeCase::Body(left, right) => Some((left, right)),
+			Self::Body(left, right) => Some((left, right)),
 			_ => None,
 		}
 	}
