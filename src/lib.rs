@@ -1,8 +1,8 @@
 //! This crate provides traits which can are used to provide an abstraction for CLInvoice frontends
 //! to enable the option of different types of storage facilities (e.g. Postgres vs MySQL)
 //!
-//! Contains various tools, such as those to [generate](clinvoice_adapter::fmt) SQL and [reference
-//! table columns](clinvoice_adapter::schema::columns).
+//! Contains various tools, such as those to [generate](crate::fmt) SQL and [reference
+//! table columns](crate::schema::columns).
 //!
 //! # Features
 //!
@@ -15,7 +15,7 @@
 //!
 //! If you are looking to create a new adapter:
 //!
-//! 1. Create newtypes for each trait in [`clinvoice_adapter::schema`].
+//! 1. Create newtypes for each trait in [`crate::schema`].
 //! 2. Implement each newtype's corresponding `Adapter` trait.
 //! 3. Add a new variant in [`Adapters`][adapters].
 //! 4. Create a new feature flag for the adapter in the corresponding frontend you want to support
