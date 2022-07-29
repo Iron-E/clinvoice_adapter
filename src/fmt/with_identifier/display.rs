@@ -2,10 +2,10 @@ use core::fmt::{Display, Formatter, Result};
 
 use super::WithIdentifier;
 
-impl<TColumn, TIdent> Display for WithIdentifier<TColumn, TIdent>
+impl<Column, Ident> Display for WithIdentifier<Column, Ident>
 where
-	TColumn: Display,
-	TIdent: Display,
+	Column: Display,
+	Ident: Display,
 {
 	fn fmt(&self, f: &mut Formatter<'_>) -> Result
 	{

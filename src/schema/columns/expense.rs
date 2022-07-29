@@ -46,9 +46,9 @@ impl<T> ExpenseColumns<T>
 	///
 	/// * [`WithIdentifier`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn scope<TAlias>(self, alias: TAlias) -> ExpenseColumns<WithIdentifier<TAlias, T>>
+	pub fn scope<Alias>(self, alias: Alias) -> ExpenseColumns<WithIdentifier<Alias, T>>
 	where
-		TAlias: Copy,
+		Alias: Copy,
 	{
 		ExpenseColumns {
 			id: WithIdentifier(alias, self.id),
@@ -66,9 +66,9 @@ impl<T> ExpenseColumns<T>
 	///
 	/// * [`TypeCast`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn typecast<TCast>(self, cast: TCast) -> ExpenseColumns<TypeCast<T, TCast>>
+	pub fn typecast<Cast>(self, cast: Cast) -> ExpenseColumns<TypeCast<T, Cast>>
 	where
-		TCast: Copy,
+		Cast: Copy,
 	{
 		ExpenseColumns {
 			id: TypeCast(self.id, cast),

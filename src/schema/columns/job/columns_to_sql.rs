@@ -9,9 +9,9 @@ impl<T> ColumnsToSql for JobColumns<T>
 where
 	T: Copy + Display,
 {
-	fn push_to<TDb>(&self, query: &mut QueryBuilder<TDb>)
+	fn push_to<Db>(&self, query: &mut QueryBuilder<Db>)
 	where
-		TDb: Database,
+		Db: Database,
 	{
 		query
 			.separated(',')
@@ -27,10 +27,10 @@ where
 			.push(self.objectives);
 	}
 
-	fn push_set_to<TDb, TValues>(&self, query: &mut QueryBuilder<TDb>, values_alias: TValues)
+	fn push_set_to<Db, Values>(&self, query: &mut QueryBuilder<Db>, values_alias: Values)
 	where
-		TDb: Database,
-		TValues: Copy + Display,
+		Db: Database,
+		Values: Copy + Display,
 	{
 		let values_columns = self.scope(values_alias);
 		query
@@ -53,15 +53,15 @@ where
 			.push_equal(self.objectives, values_columns.objectives);
 	}
 
-	fn push_update_where_to<TDb, TTable, TValues>(
+	fn push_update_where_to<Db, Table, Values>(
 		&self,
-		query: &mut QueryBuilder<TDb>,
-		table_alias: TTable,
-		values_alias: TValues,
+		query: &mut QueryBuilder<Db>,
+		table_alias: Table,
+		values_alias: Values,
 	) where
-		TDb: Database,
-		TTable: Copy + Display,
-		TValues: Copy + Display,
+		Db: Database,
+		Table: Copy + Display,
+		Values: Copy + Display,
 	{
 		query.push_equal(self.scope(table_alias).id, self.scope(values_alias).id);
 	}

@@ -3,10 +3,10 @@ use core::fmt::{Display, Formatter, Result};
 use super::TypeCast;
 use crate::fmt::{sql, As};
 
-impl<TCast, TColumn> Display for TypeCast<TCast, TColumn>
+impl<Cast, Column> Display for TypeCast<Cast, Column>
 where
-	TCast: Display,
-	TColumn: Display,
+	Cast: Display,
+	Column: Display,
 {
 	fn fmt(&self, f: &mut Formatter<'_>) -> Result
 	{

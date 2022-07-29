@@ -40,9 +40,9 @@ impl<T> LocationColumns<T>
 	///
 	/// * [`WithIdentifier`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn scope<TAlias>(self, alias: TAlias) -> LocationColumns<WithIdentifier<TAlias, T>>
+	pub fn scope<Alias>(self, alias: Alias) -> LocationColumns<WithIdentifier<Alias, T>>
 	where
-		TAlias: Copy,
+		Alias: Copy,
 	{
 		LocationColumns {
 			id: WithIdentifier(alias, self.id),

@@ -12,12 +12,12 @@ where
 	}
 }
 
-impl<TLeft, TRight> From<(TLeft, TRight)> for SnakeCase<TLeft, TRight>
+impl<Left, Right> From<(Left, Right)> for SnakeCase<Left, Right>
 where
-	TLeft: Display,
-	TRight: Display,
+	Left: Display,
+	Right: Display,
 {
-	fn from(body: (TLeft, TRight)) -> Self
+	fn from(body: (Left, Right)) -> Self
 	{
 		Self::Body(body.0, body.1)
 	}

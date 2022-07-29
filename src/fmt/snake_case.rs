@@ -51,24 +51,24 @@ use serde::{Deserialize, Serialize};
 /// ```
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub enum SnakeCase<TLeft, TRight>
+pub enum SnakeCase<Left, Right>
 where
-	TLeft: Display,
-	TRight: Display,
+	Left: Display,
+	Right: Display,
 {
 	/// A [`SnakeCase`] containing multiple words separated by underscores.
-	Body(TLeft, TRight),
+	Body(Left, Right),
 
 	/// A [`SnakeCase`] containing no underscores (i.e. only one word).
-	Head(TLeft),
+	Head(Left),
 }
 
-impl<TLeft, TRight> SnakeCase<TLeft, TRight>
+impl<Left, Right> SnakeCase<Left, Right>
 where
-	TLeft: Display,
-	TRight: Display,
+	Left: Display,
+	Right: Display,
 {
-	/// Append a new token to the [`SnakeCase`] setting it as the [`TRight`] of a [`SnakeCase::Body`].
+	/// Append a new token to the [`SnakeCase`] setting it as the [`Right`] of a [`SnakeCase::Body`].
 	///
 	/// # Example
 	///
@@ -109,7 +109,7 @@ where
 	///   assert_eq!(*foo_bar_asdf_right, "asdf");
 	/// }
 	/// ```
-	pub const fn slice_end(&self) -> Option<(&TLeft, &TRight)>
+	pub const fn slice_end(&self) -> Option<(&Left, &Right)>
 	{
 		match self
 		{

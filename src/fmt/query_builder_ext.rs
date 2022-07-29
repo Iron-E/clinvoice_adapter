@@ -36,7 +36,7 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	where
 		T: ColumnsToSql;
 
-	/// Push `" JOIN {TTable::TABLE_NAME} {TTable::TABLE_ALIAS} ON ({left} = {right})"`.
+	/// Push `" JOIN {Table::TABLE_NAME} {Table::TABLE_ALIAS} ON ({left} = {right})"`.
 	///
 	/// # Examples
 	///
@@ -67,17 +67,17 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	///     JOIN locations L ON (L.id=O.location_id);"
 	/// );
 	/// ```
-	fn push_default_equijoin<TTable, TLeft, TRight>(
+	fn push_default_equijoin<Table, Left, Right>(
 		&mut self,
-		left: TLeft,
-		right: TRight,
+		left: Left,
+		right: Right,
 	) -> &mut Self
 	where
-		TLeft: Display,
-		TRight: Display,
-		TTable: TableToSql,
+		Left: Display,
+		Right: Display,
+		Table: TableToSql,
 	{
-		self.push_equijoin(TTable::TABLE_NAME, TTable::DEFAULT_ALIAS, left, right)
+		self.push_equijoin(Table::TABLE_NAME, Table::DEFAULT_ALIAS, left, right)
 	}
 
 	/// Push `" FROM {T::TABLE_NAME} {T::TABLE_ALIAS}"`.
@@ -118,10 +118,10 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	///   " SELECT O.id,O.location_id,O.name FROM organizations O WHERE O.id=3;"
 	/// );
 	/// ```
-	fn push_equal<TLeft, TRight>(&mut self, left: TLeft, right: TRight) -> &mut Self
+	fn push_equal<Left, Right>(&mut self, left: Left, right: Right) -> &mut Self
 	where
-		TLeft: Display,
-		TRight: Display;
+		Left: Display,
+		Right: Display;
 
 	/// Push `" JOIN {table_ident} {table_alias} ON ({left} = {right})"`.
 	///
@@ -143,28 +143,28 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	///   " SELECT  FROM foo F JOIN bar B ON (B.foo_id=F.id);"
 	/// );
 	/// ```
-	fn push_equijoin<TIdent, TAlias, TLeft, TRight>(
+	fn push_equijoin<Ident, Alias, Left, Right>(
 		&mut self,
-		table_ident: TIdent,
-		table_alias: TAlias,
-		left: TLeft,
-		right: TRight,
+		table_ident: Ident,
+		table_alias: Alias,
+		left: Left,
+		right: Right,
 	) -> &mut Self
 	where
-		TAlias: Display,
-		TIdent: Display,
-		TLeft: Display,
-		TRight: Display;
+		Alias: Display,
+		Ident: Display,
+		Left: Display,
+		Right: Display;
 
 	/// Push `" FROM {table_ident} {table_alias}"`.
 	///
 	/// # Examples
 	///
 	/// * See [`QueryBuilderExt::push_equijoin`]
-	fn push_from<TIdent, TAlias>(&mut self, table_ident: TIdent, table_alias: TAlias) -> &mut Self
+	fn push_from<Ident, Alias>(&mut self, table_ident: Ident, table_alias: Alias) -> &mut Self
 	where
-		TAlias: Display,
-		TIdent: Display;
+		Alias: Display,
+		Ident: Display;
 
 	/// Push a comma and then [`push_columns`](QueryBuilderExt::push_columns).
 	///
@@ -195,27 +195,27 @@ where
 		self
 	}
 
-	fn push_equal<TLeft, TRight>(&mut self, left: TLeft, right: TRight) -> &mut Self
+	fn push_equal<Left, Right>(&mut self, left: Left, right: Right) -> &mut Self
 	where
-		TLeft: Display,
-		TRight: Display,
+		Left: Display,
+		Right: Display,
 	{
 		self.separated('=').push(left).push(right);
 		self
 	}
 
-	fn push_equijoin<TIdent, TAlias, TLeft, TRight>(
+	fn push_equijoin<Ident, Alias, Left, Right>(
 		&mut self,
-		table_ident: TIdent,
-		table_alias: TAlias,
-		left: TLeft,
-		right: TRight,
+		table_ident: Ident,
+		table_alias: Alias,
+		left: Left,
+		right: Right,
 	) -> &mut Self
 	where
-		TAlias: Display,
-		TIdent: Display,
-		TLeft: Display,
-		TRight: Display,
+		Alias: Display,
+		Ident: Display,
+		Left: Display,
+		Right: Display,
 	{
 		self
 			.push(sql::JOIN)
@@ -227,10 +227,10 @@ where
 		self.push_equal(left, right).push(')')
 	}
 
-	fn push_from<TIdent, TAlias>(&mut self, table_ident: TIdent, table_alias: TAlias) -> &mut Self
+	fn push_from<Ident, Alias>(&mut self, table_ident: Ident, table_alias: Alias) -> &mut Self
 	where
-		TAlias: Display,
-		TIdent: Display,
+		Alias: Display,
+		Ident: Display,
 	{
 		self
 			.push(sql::FROM)

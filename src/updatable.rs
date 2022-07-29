@@ -16,11 +16,11 @@ pub trait Updatable
 	/// # Errors
 	///
 	/// * If any [`Updatable::Entity`] in `entities` does not exist over the `connection`.
-	async fn update<'entity, TIter>(
+	async fn update<'entity, Iter>(
 		connection: &mut Transaction<Self::Db>,
-		entities: TIter,
+		entities: Iter,
 	) -> Result<()>
 	where
 		Self::Entity: 'entity,
-		TIter: Clone + Iterator<Item = &'entity Self::Entity> + Send;
+		Iter: Clone + Iterator<Item = &'entity Self::Entity> + Send;
 }

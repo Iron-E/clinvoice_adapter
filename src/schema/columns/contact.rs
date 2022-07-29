@@ -46,9 +46,9 @@ impl<T> ContactColumns<T>
 	///
 	/// * [`WithIdentifier`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn scope<TAlias>(self, alias: TAlias) -> ContactColumns<WithIdentifier<TAlias, T>>
+	pub fn scope<Alias>(self, alias: Alias) -> ContactColumns<WithIdentifier<Alias, T>>
 	where
-		TAlias: Copy,
+		Alias: Copy,
 	{
 		ContactColumns {
 			address_id: WithIdentifier(alias, self.address_id),

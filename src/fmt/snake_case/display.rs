@@ -2,10 +2,10 @@ use core::fmt::{Display, Formatter, Result};
 
 use super::SnakeCase;
 
-impl<TLeft, TRight> Display for SnakeCase<TLeft, TRight>
+impl<Left, Right> Display for SnakeCase<Left, Right>
 where
-	TLeft: Display,
-	TRight: Display,
+	Left: Display,
+	Right: Display,
 {
 	fn fmt(&self, f: &mut Formatter<'_>) -> Result
 	{

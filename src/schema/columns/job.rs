@@ -51,7 +51,7 @@ impl<T> JobColumns<T>
 	///
 	/// * [`As`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn r#as<TAlias>(self, aliased: JobColumns<TAlias>) -> JobColumns<As<T, TAlias>>
+	pub fn r#as<Alias>(self, aliased: JobColumns<Alias>) -> JobColumns<As<T, Alias>>
 	{
 		JobColumns {
 			client_id: As(self.client_id, aliased.client_id),
@@ -84,9 +84,9 @@ impl<T> JobColumns<T>
 	///
 	/// * [`WithIdentifier`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn scope<TAlias>(self, alias: TAlias) -> JobColumns<WithIdentifier<TAlias, T>>
+	pub fn scope<Alias>(self, alias: Alias) -> JobColumns<WithIdentifier<Alias, T>>
 	where
-		TAlias: Copy,
+		Alias: Copy,
 	{
 		JobColumns {
 			client_id: WithIdentifier(alias, self.client_id),
@@ -109,9 +109,9 @@ impl<T> JobColumns<T>
 	///
 	/// * [`TypeCast`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn typecast<TCast>(self, cast: TCast) -> JobColumns<TypeCast<T, TCast>>
+	pub fn typecast<Cast>(self, cast: Cast) -> JobColumns<TypeCast<T, Cast>>
 	where
-		TCast: Copy,
+		Cast: Copy,
 	{
 		JobColumns {
 			client_id: TypeCast(self.client_id, cast),

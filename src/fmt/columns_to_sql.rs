@@ -14,9 +14,9 @@ pub trait ColumnsToSql: TableToSql
 	///
 	/// * See [`EmployeeColumns::unique`](crate::schema::columns::EmployeeColumns::unique), which uses
 	///   [`QueryBuilderExt::push_columns`](crate::fmt::QueryBuilderExt::push_columns).
-	fn push_to<TDb>(&self, query: &mut QueryBuilder<TDb>)
+	fn push_to<Db>(&self, query: &mut QueryBuilder<Db>)
 	where
-		TDb: Database;
+		Db: Database;
 
 	/// Push the `SET` clause (keyword not included) to the `query`.
 	///
@@ -91,23 +91,23 @@ pub trait ColumnsToSql: TableToSql
 	///     WHERE E.id=E_V.id;"
 	/// );
 	/// ```
-	fn push_set_to<TDb, TValues>(&self, query: &mut QueryBuilder<TDb>, values_alias: TValues)
+	fn push_set_to<Db, Values>(&self, query: &mut QueryBuilder<Db>, values_alias: Values)
 	where
-		TDb: Database,
-		TValues: Copy + Display;
+		Db: Database,
+		Values: Copy + Display;
 
 	/// Push the `WHERE` clause of an `UPDATE` statement (`WHERE` keyword not included) to the `query`, e.g.:
 	///
 	/// # Examples
 	///
 	/// * See [`ColumnsToSql::push_set_to`].
-	fn push_update_where_to<TDb, TTable, TValues>(
+	fn push_update_where_to<Db, Table, Values>(
 		&self,
-		query: &mut QueryBuilder<TDb>,
-		table_alias: TTable,
-		values_alias: TValues,
+		query: &mut QueryBuilder<Db>,
+		table_alias: Table,
+		values_alias: Values,
 	) where
-		TDb: Database,
-		TTable: Copy + Display,
-		TValues: Copy + Display;
+		Db: Database,
+		Table: Copy + Display,
+		Values: Copy + Display;
 }

@@ -15,11 +15,11 @@ pub trait OrganizationAdapter:
 	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Organization`] via the `connection`.
-	async fn create<'connection, TConn>(
-		connection: TConn,
+	async fn create<'connection, Conn>(
+		connection: Conn,
 		location: Location,
 		name: String,
 	) -> Result<<Self as Deletable>::Entity>
 	where
-		TConn: Executor<'connection, Database = <Self as Deletable>::Db>;
+		Conn: Executor<'connection, Database = <Self as Deletable>::Db>;
 }

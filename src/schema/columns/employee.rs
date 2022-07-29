@@ -33,7 +33,7 @@ impl<T> EmployeeColumns<T>
 	///
 	/// * [`As`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn r#as<TAlias>(self, aliased: EmployeeColumns<TAlias>) -> EmployeeColumns<As<T, TAlias>>
+	pub fn r#as<Alias>(self, aliased: EmployeeColumns<Alias>) -> EmployeeColumns<As<T, Alias>>
 	{
 		EmployeeColumns {
 			id: As(self.id, aliased.id),
@@ -60,9 +60,9 @@ impl<T> EmployeeColumns<T>
 	///
 	/// * [`WithIdentifier`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn scope<TAlias>(self, alias: TAlias) -> EmployeeColumns<WithIdentifier<TAlias, T>>
+	pub fn scope<Alias>(self, alias: Alias) -> EmployeeColumns<WithIdentifier<Alias, T>>
 	where
-		TAlias: Copy,
+		Alias: Copy,
 	{
 		EmployeeColumns {
 			id: WithIdentifier(alias, self.id),

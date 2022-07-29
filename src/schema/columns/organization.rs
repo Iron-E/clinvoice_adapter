@@ -30,10 +30,10 @@ impl<T> OrganizationColumns<T>
 	///
 	/// * [`As`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn r#as<TAlias>(
+	pub fn r#as<Alias>(
 		self,
-		aliased: OrganizationColumns<TAlias>,
-	) -> OrganizationColumns<As<T, TAlias>>
+		aliased: OrganizationColumns<Alias>,
+	) -> OrganizationColumns<As<T, Alias>>
 	{
 		OrganizationColumns {
 			id: As(self.id, aliased.id),
@@ -59,9 +59,9 @@ impl<T> OrganizationColumns<T>
 	///
 	/// * [`WithIdentifier`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn scope<TAlias>(self, alias: TAlias) -> OrganizationColumns<WithIdentifier<TAlias, T>>
+	pub fn scope<Alias>(self, alias: Alias) -> OrganizationColumns<WithIdentifier<Alias, T>>
 	where
-		TAlias: Copy,
+		Alias: Copy,
 	{
 		OrganizationColumns {
 			id: WithIdentifier(alias, self.id),

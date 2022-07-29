@@ -15,11 +15,11 @@ pub trait LocationAdapter:
 	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Location`] via the `connection`.
-	async fn create<'connection, TConn>(
-		connection: TConn,
+	async fn create<'connection, Conn>(
+		connection: Conn,
 		name: String,
 		outer: Option<<Self as Deletable>::Entity>,
 	) -> Result<<Self as Deletable>::Entity>
 	where
-		TConn: Executor<'connection, Database = <Self as Deletable>::Db>;
+		Conn: Executor<'connection, Database = <Self as Deletable>::Db>;
 }

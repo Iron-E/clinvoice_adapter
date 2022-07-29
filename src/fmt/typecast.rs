@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// # Warnings
 ///
-/// * `TCast`'s and `TColumn`'s [`to_string`](ToString::to_string) output be non-empty to format
+/// * `Cast`'s and `Column`'s [`to_string`](ToString::to_string) output be non-empty to format
 ///   correctly.
 ///
 /// # Example
@@ -20,4 +20,4 @@ use serde::{Deserialize, Serialize};
 /// ```
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct TypeCast<TColumn, TCast>(pub TColumn, pub TCast);
+pub struct TypeCast<Column, Cast>(pub Column, pub Cast);

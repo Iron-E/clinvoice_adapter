@@ -3,11 +3,11 @@ mod display;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
-/// Formats a dot-access of `TColumn`.
+/// Formats a dot-access of `Column`.
 ///
 /// # Warnings
 ///
-/// * `TColumn`'s and `TIdent`'s [`to_string`](ToString::to_string) output be non-empty to format
+/// * `Column`'s and `Ident`'s [`to_string`](ToString::to_string) output be non-empty to format
 ///   correctly.
 ///
 /// # Example
@@ -20,4 +20,4 @@ use serde::{Deserialize, Serialize};
 /// ```
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct WithIdentifier<TIdent, TColumn>(pub TIdent, pub TColumn);
+pub struct WithIdentifier<Ident, Column>(pub Ident, pub Column);
