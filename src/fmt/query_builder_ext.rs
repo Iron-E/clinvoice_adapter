@@ -67,11 +67,7 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	///     JOIN locations L ON (L.id=O.location_id);"
 	/// );
 	/// ```
-	fn push_default_equijoin<Table, Left, Right>(
-		&mut self,
-		left: Left,
-		right: Right,
-	) -> &mut Self
+	fn push_default_equijoin<Table, Left, Right>(&mut self, left: Left, right: Right) -> &mut Self
 	where
 		Left: Display,
 		Right: Display,
