@@ -52,10 +52,10 @@ impl<T> ContactColumns<T>
 	{
 		ContactColumns {
 			address_id: WithIdentifier(alias, self.address_id),
-			email: WithIdentifier(alias, self.email),
-			label: WithIdentifier(alias, self.label),
-			other: WithIdentifier(alias, self.other),
-			phone: WithIdentifier(alias, self.phone),
+			email:      WithIdentifier(alias, self.email),
+			label:      WithIdentifier(alias, self.label),
+			other:      WithIdentifier(alias, self.other),
+			phone:      WithIdentifier(alias, self.phone),
 		}
 	}
 }
@@ -67,10 +67,10 @@ impl ContactColumns<&'static str>
 	{
 		Self {
 			address_id: "address_id",
-			email: "email",
-			label: "label",
-			other: "other",
-			phone: "phone",
+			email:      "email",
+			label:      "label",
+			other:      "other",
+			phone:      "phone",
 		}
 	}
 }

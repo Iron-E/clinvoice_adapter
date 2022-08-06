@@ -68,7 +68,8 @@ where
 	Left: Display,
 	Right: Display,
 {
-	/// Append a new token to the [`SnakeCase`] setting it as the [`Right`] of a [`SnakeCase::Body`].
+	/// Append a new token to the [`SnakeCase`] setting it as the [`Right`] of a
+	/// [`SnakeCase::Body`].
 	///
 	/// # Example
 	///
@@ -85,7 +86,8 @@ where
 		SnakeCase::Body(self, token)
 	}
 
-	/// Return both sides of the [`SnakeCase::Body`], or [`None`] if this is the [`SnakeCase::Head`].
+	/// Return both sides of the [`SnakeCase::Body`], or [`None`] if this is the
+	/// [`SnakeCase::Head`].
 	///
 	/// # Example
 	///

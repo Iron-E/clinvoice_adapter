@@ -57,10 +57,6 @@ impl LocationColumns<&'static str>
 	/// The names of the columns in `locations` without any aliasing.
 	pub const fn default() -> Self
 	{
-		Self {
-			id: "id",
-			outer_id: "outer_id",
-			name: "name",
-		}
+		Self { id: "id", outer_id: "outer_id", name: "name" }
 	}
 }

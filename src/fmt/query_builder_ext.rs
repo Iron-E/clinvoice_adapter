@@ -213,12 +213,7 @@ where
 		Left: Display,
 		Right: Display,
 	{
-		self
-			.push(sql::JOIN)
-			.separated(' ')
-			.push(table_ident)
-			.push(table_alias)
-			.push("ON (");
+		self.push(sql::JOIN).separated(' ').push(table_ident).push(table_alias).push("ON (");
 
 		self.push_equal(left, right).push(')')
 	}
@@ -228,11 +223,7 @@ where
 		Alias: Display,
 		Ident: Display,
 	{
-		self
-			.push(sql::FROM)
-			.separated(' ')
-			.push(table_ident)
-			.push(table_alias);
+		self.push(sql::FROM).separated(' ').push(table_ident).push(table_alias);
 
 		self
 	}

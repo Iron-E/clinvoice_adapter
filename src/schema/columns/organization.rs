@@ -23,8 +23,8 @@ pub struct OrganizationColumns<T>
 
 impl<T> OrganizationColumns<T>
 {
-	/// Returns a [`OrganizationColumns`] which aliases the names of these [`OrganizationColumns`] with the
-	/// `aliased` columns provided.
+	/// Returns a [`OrganizationColumns`] which aliases the names of these [`OrganizationColumns`]
+	/// with the `aliased` columns provided.
 	///
 	/// # See also
 	///
@@ -42,7 +42,8 @@ impl<T> OrganizationColumns<T>
 		}
 	}
 
-	/// Add a [scope](OrganizationColumns::scope) using the [default alias](TableToSql::default_alias)
+	/// Add a [scope](OrganizationColumns::scope) using the [default
+	/// alias](TableToSql::default_alias)
 	///
 	/// # See also
 	///
@@ -80,14 +81,11 @@ impl OrganizationColumns<&'static str>
 	/// * See [`OrganizationColumns::unique`].
 	pub const fn default() -> Self
 	{
-		Self {
-			id: "id",
-			location_id: "location_id",
-			name: "name",
-		}
+		Self { id: "id", location_id: "location_id", name: "name" }
 	}
 
-	/// Aliases for the columns in `employees` which are guaranteed to be unique among other [`columns`](super)'s `unique` aliases.
+	/// Aliases for the columns in `employees` which are guaranteed to be unique among other
+	/// [`columns`](super)'s `unique` aliases.
 	///
 	/// # Examples
 	///

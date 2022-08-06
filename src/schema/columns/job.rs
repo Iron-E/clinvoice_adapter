@@ -151,7 +151,8 @@ impl JobColumns<&'static str>
 		}
 	}
 
-	/// Aliases for the columns in `jobs` which are guaranteed to be unique among other [`columns`](super)' `unique` aliases.
+	/// Aliases for the columns in `jobs` which are guaranteed to be unique among other
+	/// [`columns`](super)' `unique` aliases.
 	///
 	/// # Examples
 	///

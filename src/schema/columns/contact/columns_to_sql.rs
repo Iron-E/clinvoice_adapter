@@ -50,9 +50,6 @@ where
 		Table: Copy + Display,
 		Values: Copy + Display,
 	{
-		query.push_equal(
-			self.scope(table_alias).label,
-			self.scope(values_alias).label,
-		);
+		query.push_equal(self.scope(table_alias).label, self.scope(values_alias).label);
 	}
 }

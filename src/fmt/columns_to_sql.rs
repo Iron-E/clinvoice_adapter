@@ -8,12 +8,13 @@ use super::TableToSql;
 /// table.
 pub trait ColumnsToSql: TableToSql
 {
-	/// Push a comma-separated list of column names to the `query`, e.g.: `column_1,column_2,`…`column_n`.
+	/// Push a comma-separated list of column names to the `query`, e.g.:
+	/// `column_1,column_2,`…`column_n`.
 	///
 	/// # Examples
 	///
-	/// * See [`EmployeeColumns::unique`](crate::schema::columns::EmployeeColumns::unique), which uses
-	///   [`QueryBuilderExt::push_columns`](crate::fmt::QueryBuilderExt::push_columns).
+	/// * See [`EmployeeColumns::unique`](crate::schema::columns::EmployeeColumns::unique), which
+	///   uses [`QueryBuilderExt::push_columns`](crate::fmt::QueryBuilderExt::push_columns).
 	fn push_to<Db>(&self, query: &mut QueryBuilder<Db>)
 	where
 		Db: Database;
@@ -96,7 +97,8 @@ pub trait ColumnsToSql: TableToSql
 		Db: Database,
 		Values: Copy + Display;
 
-	/// Push the `WHERE` clause of an `UPDATE` statement (`WHERE` keyword not included) to the `query`, e.g.:
+	/// Push the `WHERE` clause of an `UPDATE` statement (`WHERE` keyword not included) to the
+	/// `query`, e.g.:
 	///
 	/// # Examples
 	///

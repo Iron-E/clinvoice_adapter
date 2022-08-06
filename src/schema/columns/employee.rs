@@ -36,10 +36,10 @@ impl<T> EmployeeColumns<T>
 	pub fn r#as<Alias>(self, aliased: EmployeeColumns<Alias>) -> EmployeeColumns<As<T, Alias>>
 	{
 		EmployeeColumns {
-			id: As(self.id, aliased.id),
-			name: As(self.name, aliased.name),
+			id:     As(self.id, aliased.id),
+			name:   As(self.name, aliased.name),
 			status: As(self.status, aliased.status),
-			title: As(self.title, aliased.title),
+			title:  As(self.title, aliased.title),
 		}
 	}
 
@@ -65,10 +65,10 @@ impl<T> EmployeeColumns<T>
 		Alias: Copy,
 	{
 		EmployeeColumns {
-			id: WithIdentifier(alias, self.id),
-			name: WithIdentifier(alias, self.name),
+			id:     WithIdentifier(alias, self.id),
+			name:   WithIdentifier(alias, self.name),
 			status: WithIdentifier(alias, self.status),
-			title: WithIdentifier(alias, self.title),
+			title:  WithIdentifier(alias, self.title),
 		}
 	}
 }
@@ -82,15 +82,11 @@ impl EmployeeColumns<&'static str>
 	/// * See [`EmployeeColumns::unique`].
 	pub const fn default() -> Self
 	{
-		Self {
-			id: "id",
-			name: "name",
-			status: "status",
-			title: "title",
-		}
+		Self { id: "id", name: "name", status: "status", title: "title" }
 	}
 
-	/// Aliases for the columns in `employees` which are guaranteed to be unique among other [`columns`](super)'s `unique` aliases.
+	/// Aliases for the columns in `employees` which are guaranteed to be unique among other
+	/// [`columns`](super)'s `unique` aliases.
 	///
 	/// # Examples
 	///
@@ -138,10 +134,10 @@ impl EmployeeColumns<&'static str>
 	pub const fn unique() -> Self
 	{
 		Self {
-			id: "unique_2_employee_id",
-			name: "unique_2_employee_name",
+			id:     "unique_2_employee_id",
+			name:   "unique_2_employee_name",
 			status: "unique_2_employee_status",
-			title: "unique_2_employee_title",
+			title:  "unique_2_employee_title",
 		}
 	}
 }
