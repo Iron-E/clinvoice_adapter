@@ -116,7 +116,7 @@ where
 		match self
 		{
 			Self::Body(left, right) => Some((left, right)),
-			_ => None,
+			Self::Head(_) => None,
 		}
 	}
 }
