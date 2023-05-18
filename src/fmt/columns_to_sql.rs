@@ -24,11 +24,11 @@ pub trait ColumnsToSql: TableToSql
 	/// # Examples
 	///
 	/// ```rust
-	/// use clinvoice_adapter::{
+	/// use winvoice_adapter::{
 	///   fmt::{As, ColumnsToSql, QueryBuilderExt, SnakeCase, sql, TableToSql},
 	///   schema::columns::EmployeeColumns,
 	/// };
-	/// use clinvoice_schema::Employee;
+	/// use winvoice_schema::Employee;
 	/// # use pretty_assertions::assert_eq;
 	/// use sqlx::{Execute, QueryBuilder, Postgres};
 	///

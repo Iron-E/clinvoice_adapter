@@ -10,7 +10,7 @@ pub trait Retrievable
 	/// The type of data that is to be [`update`](Deletable::update)d.
 	type Entity;
 
-	/// The type used for [match](clinvoice_match)ing.
+	/// The type used for [match](winvoice_match)ing.
 	type Match;
 
 	/// Retrieve all [`Contact`]s (via `connection`) that match the `match_condition`.

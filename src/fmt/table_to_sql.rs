@@ -21,7 +21,7 @@ pub(crate) mod sealed
 }
 
 /// Defines attributes of a table in a database which was
-/// [`init`](crate::Initializable::init)ialized for use with CLInvoice.
+/// [`init`](crate::Initializable::init)ialized for use with Winvoice.
 ///
 /// # Examples
 ///

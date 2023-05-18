@@ -1,5 +1,5 @@
-use clinvoice_match::MatchOrganization;
-use clinvoice_schema::{Location, Organization};
+use winvoice_match::MatchOrganization;
+use winvoice_schema::{Location, Organization};
 use sqlx::{Executor, Result};
 
 use crate::{Deletable, Retrievable, Updatable};

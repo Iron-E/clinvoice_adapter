@@ -90,7 +90,7 @@ impl OrganizationColumns<&'static str>
 	/// # Examples
 	///
 	/// ```rust
-	/// use clinvoice_adapter::{
+	/// use winvoice_adapter::{
 	///   fmt::{QueryBuilderExt, sql},
 	///   schema::columns::{EmployeeColumns, OrganizationColumns},
 	/// };

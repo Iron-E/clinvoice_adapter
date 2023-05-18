@@ -1,5 +1,5 @@
-use clinvoice_match::MatchContact;
-use clinvoice_schema::{Contact, ContactKind};
+use winvoice_match::MatchContact;
+use winvoice_schema::{Contact, ContactKind};
 use sqlx::{Executor, Result};
 
 use crate::{Deletable, Retrievable, Updatable};

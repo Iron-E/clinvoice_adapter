@@ -157,7 +157,7 @@ impl JobColumns<&'static str>
 	/// # Examples
 	///
 	/// ```rust
-	/// use clinvoice_adapter::{
+	/// use winvoice_adapter::{
 	///   fmt::{QueryBuilderExt, sql},
 	///   schema::columns::{JobColumns, OrganizationColumns},
 	/// };

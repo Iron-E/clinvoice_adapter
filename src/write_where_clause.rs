@@ -6,7 +6,7 @@ use sqlx::{Database, QueryBuilder};
 pub use write_context::WriteContext;
 
 /// Implementors of this trait can generate `WHERE` clauses out of some [match
-/// condition](clinvoice_match) `M` for the given `Db`'s SQL syntax.
+/// condition](winvoice_match) `M` for the given `Db`'s SQL syntax.
 pub trait WriteWhereClause<Db, Match>
 where
 	Db: Database,

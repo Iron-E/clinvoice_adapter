@@ -1,4 +1,4 @@
-//! This crate provides traits which can are used to provide an abstraction for CLInvoice frontends
+//! This crate provides traits which can are used to provide an abstraction for Winvoice frontends
 //! to enable the option of different types of storage facilities (e.g. Postgres vs MySQL)
 //!
 //! Contains various tools, such as those to [generate](crate::fmt) SQL and [reference
@@ -22,7 +22,7 @@
 //!    the new adapter.
 //! 5. Write add new `match` arms in areas that `match` on [`Adapters`][adapters].
 //!
-//! [adapters]: clinvoice_config::Adapters
+//! [adapters]: winvoice_config::Adapters
 
 #![allow(clippy::drop_non_drop)]
 #![forbid(unsafe_code)]

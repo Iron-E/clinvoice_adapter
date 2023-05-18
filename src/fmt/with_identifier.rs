@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 /// # Example
 ///
 /// ```rust
-/// use clinvoice_adapter::fmt::WithIdentifier;
+/// use winvoice_adapter::fmt::WithIdentifier;
 /// # use pretty_assertions::assert_eq;
 ///
 /// assert_eq!(WithIdentifier("foo", "a").to_string(), "foo.a");

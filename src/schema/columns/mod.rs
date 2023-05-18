@@ -1,10 +1,10 @@
-//! This module holds types which represent the columns for every table that CLInvoice requires to
+//! This module holds types which represent the columns for every table that Winvoice requires to
 //! exist in a [`Database`](sqlx::Database).
 //!
 //! # Examples
 //!
 //! ```rust
-//! use clinvoice_adapter::{
+//! use winvoice_adapter::{
 //!   fmt::{QueryBuilderExt, sql},
 //!   schema::columns::OrganizationColumns,
 //! };

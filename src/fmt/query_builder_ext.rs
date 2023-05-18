@@ -41,7 +41,7 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	/// # Examples
 	///
 	/// ```rust
-	/// use clinvoice_adapter::{
+	/// use winvoice_adapter::{
 	///   fmt::{QueryBuilderExt, sql, WithIdentifier},
 	///   schema::columns::{LocationColumns, OrganizationColumns},
 	/// };
@@ -93,7 +93,7 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	/// # Examples
 	///
 	/// ```rust
-	/// use clinvoice_adapter::{
+	/// use winvoice_adapter::{
 	///   fmt::{QueryBuilderExt, sql, WithIdentifier},
 	///   schema::columns::OrganizationColumns,
 	/// };
@@ -124,7 +124,7 @@ pub trait QueryBuilderExt<'args>: sealed::Sealed
 	/// # Examples
 	///
 	/// ```rust
-	/// use clinvoice_adapter::fmt::{QueryBuilderExt, sql, WithIdentifier};
+	/// use winvoice_adapter::fmt::{QueryBuilderExt, sql, WithIdentifier};
 	/// # use pretty_assertions::assert_eq;
 	/// use sqlx::{Execute, Postgres, QueryBuilder};
 	///

@@ -1,5 +1,5 @@
-use clinvoice_match::MatchExpense;
-use clinvoice_schema::{Expense, Id, Money};
+use winvoice_match::MatchExpense;
+use winvoice_schema::{Expense, Id, Money};
 use sqlx::{Executor, Result};
 
 use crate::{Deletable, Retrievable, Updatable};

@@ -1,5 +1,5 @@
-use clinvoice_match::MatchEmployee;
-use clinvoice_schema::Employee;
+use winvoice_match::MatchEmployee;
+use winvoice_schema::Employee;
 use sqlx::{Executor, Result};
 
 use crate::{Deletable, Retrievable, Updatable};

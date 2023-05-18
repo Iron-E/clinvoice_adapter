@@ -25,7 +25,7 @@ use serde::{Deserialize, Serialize};
 /// Pretend we're creating aliases to push to a query [`String`].
 ///
 /// ```rust
-/// use clinvoice_adapter::fmt::SnakeCase;
+/// use winvoice_adapter::fmt::SnakeCase;
 /// # use pretty_assertions::assert_eq;
 ///
 /// /* Scenario 1: Eager, very bad */
@@ -74,7 +74,7 @@ where
 	/// # Example
 	///
 	/// ```rust
-	/// use clinvoice_adapter::fmt::SnakeCase;
+	/// use winvoice_adapter::fmt::SnakeCase;
 	/// # use pretty_assertions::assert_eq;
 	///
 	/// assert_eq!(SnakeCase::from("foo").push("bar").to_string(), "foo_bar");
@@ -92,7 +92,7 @@ where
 	/// # Example
 	///
 	/// ```rust
-	/// use clinvoice_adapter::fmt::SnakeCase;
+	/// use winvoice_adapter::fmt::SnakeCase;
 	/// # use pretty_assertions::assert_eq;
 	///
 	/// let foo = SnakeCase::from("foo");

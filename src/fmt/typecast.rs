@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 /// # Example
 ///
 /// ```rust
-/// use clinvoice_adapter::fmt::TypeCast;
+/// use winvoice_adapter::fmt::TypeCast;
 /// # use pretty_assertions::assert_eq;
 ///
 /// assert_eq!(TypeCast("foo.a", "numeric").to_string(), " CAST (foo.a AS numeric)");

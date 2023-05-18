@@ -1,7 +1,7 @@
 use core::time::Duration;
 
-use clinvoice_match::MatchJob;
-use clinvoice_schema::{
+use winvoice_match::MatchJob;
+use winvoice_schema::{
 	chrono::{DateTime, Utc},
 	Invoice,
 	Job,

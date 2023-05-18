@@ -15,7 +15,7 @@
 //! ```
 //!
 //! ```rust,compile_fail
-//! use clinvoice_adapter::fmt::sql::{SELECT, FROM};
+//! use winvoice_adapter::fmt::sql::{SELECT, FROM};
 //! fn misspelling_compiles_not(columns: &str, table: &str) -> String {
 //!   format!("{SELCT}{columns}{FROM}{table}")
 //! }
