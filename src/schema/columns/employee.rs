@@ -36,10 +36,10 @@ impl<T> EmployeeColumns<T>
 	pub fn r#as<Alias>(self, aliased: EmployeeColumns<Alias>) -> EmployeeColumns<As<T, Alias>>
 	{
 		EmployeeColumns {
-			id:     As(self.id, aliased.id),
-			name:   As(self.name, aliased.name),
+			id: As(self.id, aliased.id),
+			name: As(self.name, aliased.name),
 			status: As(self.status, aliased.status),
-			title:  As(self.title, aliased.title),
+			title: As(self.title, aliased.title),
 		}
 	}
 
@@ -65,10 +65,10 @@ impl<T> EmployeeColumns<T>
 		Alias: Copy,
 	{
 		EmployeeColumns {
-			id:     WithIdentifier(alias, self.id),
-			name:   WithIdentifier(alias, self.name),
+			id: WithIdentifier(alias, self.id),
+			name: WithIdentifier(alias, self.name),
 			status: WithIdentifier(alias, self.status),
-			title:  WithIdentifier(alias, self.title),
+			title: WithIdentifier(alias, self.title),
 		}
 	}
 }
@@ -134,10 +134,10 @@ impl EmployeeColumns<&'static str>
 	pub const fn unique() -> Self
 	{
 		Self {
-			id:     "unique_2_employee_id",
-			name:   "unique_2_employee_name",
+			id: "unique_2_employee_id",
+			name: "unique_2_employee_name",
 			status: "unique_2_employee_status",
-			title:  "unique_2_employee_title",
+			title: "unique_2_employee_title",
 		}
 	}
 }

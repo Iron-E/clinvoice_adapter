@@ -1,5 +1,6 @@
 use core::time::Duration;
 
+use sqlx::{Executor, Result};
 use winvoice_match::MatchJob;
 use winvoice_schema::{
 	chrono::{DateTime, Utc},
@@ -7,7 +8,6 @@ use winvoice_schema::{
 	Job,
 	Organization,
 };
-use sqlx::{Executor, Result};
 
 use crate::{Deletable, Retrievable, Updatable};
 

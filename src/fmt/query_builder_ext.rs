@@ -1,11 +1,3 @@
-mod sealed
-{
-	use sqlx::{Database, QueryBuilder};
-
-	pub trait Sealed {}
-	impl<'args, Db> Sealed for QueryBuilder<'args, Db> where Db: Database {}
-}
-
 use core::fmt::Display;
 
 use sqlx::{database::HasArguments, query::Query, Database, QueryBuilder};
@@ -15,7 +7,7 @@ use super::{sql, ColumnsToSql, TableToSql};
 /// An extension to [`QueryBuilder`] that expands upon
 /// [`insert_values`](QueryBuilder::insert_values`) by enabling it to generate other SQL clauses as
 /// well.
-pub trait QueryBuilderExt<'args>: sealed::Sealed
+pub trait QueryBuilderExt<'args>
 {
 	/// The [`Database`] which the [query](QueryBuilder) is being written for.
 	type Db: Database;
@@ -214,7 +206,6 @@ where
 		Right: Display,
 	{
 		self.push(sql::JOIN).separated(' ').push(table_ident).push(table_alias).push("ON (");
-
 		self.push_equal(left, right).push(')')
 	}
 
@@ -224,7 +215,6 @@ where
 		Ident: Display,
 	{
 		self.push(sql::FROM).separated(' ').push(table_ident).push(table_alias);
-
 		self
 	}
 

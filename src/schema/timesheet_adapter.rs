@@ -1,3 +1,4 @@
+use sqlx::{Result, Transaction};
 use winvoice_match::MatchTimesheet;
 use winvoice_schema::{
 	chrono::{DateTime, Utc},
@@ -6,7 +7,6 @@ use winvoice_schema::{
 	Money,
 	Timesheet,
 };
-use sqlx::{Result, Transaction};
 
 use crate::{Deletable, Retrievable, Updatable};
 

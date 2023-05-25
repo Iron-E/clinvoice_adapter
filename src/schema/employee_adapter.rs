@@ -1,6 +1,6 @@
+use sqlx::{Executor, Result};
 use winvoice_match::MatchEmployee;
 use winvoice_schema::Employee;
-use sqlx::{Executor, Result};
 
 use crate::{Deletable, Retrievable, Updatable};
 
