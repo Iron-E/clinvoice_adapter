@@ -7,6 +7,7 @@
 //!
 //! [database]: sqlx::Database
 
+mod adapter;
 pub mod columns;
 mod contact_adapter;
 mod employee_adapter;
@@ -16,6 +17,7 @@ mod location_adapter;
 mod organization_adapter;
 mod timesheet_adapter;
 
+pub use adapter::Adapter;
 pub use contact_adapter::ContactAdapter;
 pub use employee_adapter::EmployeeAdapter;
 pub use expenses_adapter::ExpensesAdapter;
