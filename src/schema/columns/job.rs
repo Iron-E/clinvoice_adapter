@@ -9,7 +9,7 @@ use crate::fmt::{As, TableToSql, TypeCast, WithIdentifier};
 /// The names of the columns of the `jobs` table.
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct JobColumns<T>
+pub struct JobColumns<T = &'static str>
 {
 	/// The name of the `client_id` column of the `jobs` table.
 	pub client_id: T,
@@ -74,7 +74,7 @@ impl<T> JobColumns<T>
 	/// * [`WithIdentifier`]
 	pub fn default_scope(self) -> JobColumns<WithIdentifier<char, T>>
 	{
-		self.scope(Self::DEFAULT_ALIAS)
+		self.scope(JobColumns::DEFAULT_ALIAS)
 	}
 
 	/// Returns a [`JobColumns`] which modifies its fields' [`Display`]

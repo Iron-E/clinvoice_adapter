@@ -9,7 +9,7 @@ use crate::fmt::{TableToSql, WithIdentifier};
 /// The names of the columns of the `timesheets` table.
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct TimesheetColumns<T>
+pub struct TimesheetColumns<T = &'static str>
 {
 	/// The name of the `employee_id` column of the `timesheets` table.
 	pub employee_id: T,
@@ -39,7 +39,7 @@ impl<T> TimesheetColumns<T>
 	/// * [`WithIdentifier`].
 	pub fn default_scope(self) -> TimesheetColumns<WithIdentifier<char, T>>
 	{
-		self.scope(Self::DEFAULT_ALIAS)
+		self.scope(TimesheetColumns::DEFAULT_ALIAS)
 	}
 
 	/// Returns a [`TimesheetColumns`] which modifies its fields' [`Display`]

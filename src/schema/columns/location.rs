@@ -9,7 +9,7 @@ use crate::fmt::{TableToSql, WithIdentifier};
 /// The names of the columns of the `locations` table.
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct LocationColumns<T>
+pub struct LocationColumns<T = &'static str>
 {
 	/// The name of the `id` column of the `locations` table.
 	pub id: T,
@@ -30,7 +30,7 @@ impl<T> LocationColumns<T>
 	/// * [`WithIdentifier`]
 	pub fn default_scope(self) -> LocationColumns<WithIdentifier<char, T>>
 	{
-		self.scope(Self::DEFAULT_ALIAS)
+		self.scope(LocationColumns::DEFAULT_ALIAS)
 	}
 
 	/// Returns a [`LocationColumns`] which modifies its fields' [`Display`]

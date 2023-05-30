@@ -9,7 +9,7 @@ use crate::fmt::{TableToSql, WithIdentifier};
 /// The names of the columns of the `contact_information` table.
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct ContactColumns<T>
+pub struct ContactColumns<T = &'static str>
 {
 	/// The name of the `address_id` column of the `contact_information` table.
 	pub address_id: T,
@@ -36,7 +36,7 @@ impl<T> ContactColumns<T>
 	/// * [`WithIdentifier`]
 	pub fn default_scope(self) -> ContactColumns<WithIdentifier<char, T>>
 	{
-		self.scope(Self::DEFAULT_ALIAS)
+		self.scope(ContactColumns::DEFAULT_ALIAS)
 	}
 
 	/// Returns a [`ContactColumns`] which modifies its fields' [`Display`]

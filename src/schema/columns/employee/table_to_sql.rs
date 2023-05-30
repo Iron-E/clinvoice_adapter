@@ -1,7 +1,7 @@
 use super::EmployeeColumns;
 use crate::fmt::TableToSql;
 
-impl<T> TableToSql for EmployeeColumns<T>
+impl TableToSql for EmployeeColumns
 {
 	const DEFAULT_ALIAS: char = 'E';
 	const TABLE_NAME: &'static str = "employees";

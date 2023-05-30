@@ -2,8 +2,6 @@ use core::fmt::Display;
 
 use sqlx::{Database, QueryBuilder};
 
-use super::TableToSql;
-
 /// Implementors of this trait are able to generate SQL which references all columns of a given
 /// table.
 pub trait ColumnsToSql

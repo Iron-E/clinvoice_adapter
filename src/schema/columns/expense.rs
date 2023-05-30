@@ -9,7 +9,7 @@ use crate::fmt::{TableToSql, TypeCast, WithIdentifier};
 /// The names of the columns of the `expenses` table.
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct ExpenseColumns<T>
+pub struct ExpenseColumns<T = &'static str>
 {
 	/// The name of the `category` column of the `expenses` table.
 	pub category: T,
@@ -36,7 +36,7 @@ impl<T> ExpenseColumns<T>
 	/// * [`WithIdentifier`]
 	pub fn default_scope(self) -> ExpenseColumns<WithIdentifier<char, T>>
 	{
-		self.scope(Self::DEFAULT_ALIAS)
+		self.scope(ExpenseColumns::DEFAULT_ALIAS)
 	}
 
 	/// Returns a [`ExpenseColumns`] which modifies its fields' [`Display`]

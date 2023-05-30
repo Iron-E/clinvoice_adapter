@@ -1,7 +1,7 @@
 use super::TimesheetColumns;
 use crate::fmt::TableToSql;
 
-impl<T> TableToSql for TimesheetColumns<T>
+impl TableToSql for TimesheetColumns
 {
 	const DEFAULT_ALIAS: char = 'T';
 	const TABLE_NAME: &'static str = "timesheets";

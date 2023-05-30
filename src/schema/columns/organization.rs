@@ -9,7 +9,7 @@ use crate::fmt::{As, TableToSql, WithIdentifier};
 /// The names of the columns of the `organizations` table.
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct OrganizationColumns<T>
+pub struct OrganizationColumns<T = &'static str>
 {
 	/// The name of the `id` column of the `organizations` table.
 	pub id: T,
@@ -50,7 +50,7 @@ impl<T> OrganizationColumns<T>
 	/// * [`WithIdentifier`]
 	pub fn default_scope(self) -> OrganizationColumns<WithIdentifier<char, T>>
 	{
-		self.scope(Self::DEFAULT_ALIAS)
+		self.scope(OrganizationColumns::DEFAULT_ALIAS)
 	}
 
 	/// Returns a [`OrganizationColumns`] which modifies its fields' [`Display`]

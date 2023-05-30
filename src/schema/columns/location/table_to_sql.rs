@@ -1,7 +1,7 @@
 use super::LocationColumns;
 use crate::fmt::TableToSql;
 
-impl<T> TableToSql for LocationColumns<T>
+impl TableToSql for LocationColumns
 {
 	const DEFAULT_ALIAS: char = 'L';
 	const TABLE_NAME: &'static str = "locations";
