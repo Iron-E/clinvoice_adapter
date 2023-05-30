@@ -48,13 +48,13 @@ pub trait ColumnsToSql
 	///
 	///
 	/// // guarantees a uniqueness for `values_alias`, even if `DEFAULT_ALIAS` changes.
-	/// let values_alias = SnakeCase::from((EmployeeColumns::<char>::DEFAULT_ALIAS, 'V'));
+	/// let values_alias = SnakeCase::from((EmployeeColumns::DEFAULT_ALIAS, 'V'));
 	///
 	/// let mut query = QueryBuilder::<Postgres>::new(sql::UPDATE);
 	/// query
 	///   .push(As(
-	///     EmployeeColumns::<&str>::TABLE_NAME,
-	///     EmployeeColumns::<char>::DEFAULT_ALIAS,
+	///     EmployeeColumns::TABLE_NAME,
+	///     EmployeeColumns::DEFAULT_ALIAS,
 	///   ))
 	///   .push(sql::SET);
 	///
@@ -80,7 +80,7 @@ pub trait ColumnsToSql
 	///   .push(')')
 	///   .push(sql::WHERE);
 	///
-	/// columns.push_update_where_to(&mut query, EmployeeColumns::<char>::DEFAULT_ALIAS, values_alias);
+	/// columns.push_update_where_to(&mut query, EmployeeColumns::DEFAULT_ALIAS, values_alias);
 	///
 	/// assert_eq!(
 	///   query.prepare().sql(),
