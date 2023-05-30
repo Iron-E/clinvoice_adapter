@@ -6,7 +6,7 @@ use super::TableToSql;
 
 /// Implementors of this trait are able to generate SQL which references all columns of a given
 /// table.
-pub trait ColumnsToSql: TableToSql
+pub trait ColumnsToSql
 {
 	/// Push a comma-separated list of column names to the `query`, e.g.:
 	/// `column_1,column_2,`…`column_n`.
