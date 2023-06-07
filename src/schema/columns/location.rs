@@ -11,6 +11,9 @@ use crate::fmt::{TableToSql, WithIdentifier};
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct LocationColumns<T = &'static str>
 {
+	/// The name of the `currency` column of the `locations` table.
+	pub currency: T,
+
 	/// The name of the `id` column of the `locations` table.
 	pub id: T,
 
@@ -45,6 +48,7 @@ impl<T> LocationColumns<T>
 		Alias: Copy,
 	{
 		LocationColumns {
+			currency: WithIdentifier(alias, self.currency),
 			id: WithIdentifier(alias, self.id),
 			outer_id: WithIdentifier(alias, self.outer_id),
 			name: WithIdentifier(alias, self.name),
@@ -57,6 +61,6 @@ impl LocationColumns<&'static str>
 	/// The names of the columns in `locations` without any aliasing.
 	pub const fn default() -> Self
 	{
-		Self { id: "id", outer_id: "outer_id", name: "name" }
+		Self { currency: "currency", id: "id", outer_id: "outer_id", name: "name" }
 	}
 }

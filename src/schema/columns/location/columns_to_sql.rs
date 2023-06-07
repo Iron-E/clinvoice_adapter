@@ -13,7 +13,7 @@ where
 	where
 		Db: Database,
 	{
-		query.separated(',').push(self.id).push(self.name).push(self.outer_id);
+		query.separated(',').push(self.currency).push(self.id).push(self.name).push(self.outer_id);
 	}
 
 	fn push_set_to<Db, Values>(&self, query: &mut QueryBuilder<Db>, values_alias: Values)
@@ -23,6 +23,8 @@ where
 	{
 		let values_columns = self.scope(values_alias);
 		query
+			.push_equal(self.currency, values_columns.currency)
+			.push(',')
 			.push_equal(self.name, values_columns.name)
 			.push(',')
 			.push_equal(self.outer_id, values_columns.outer_id);
