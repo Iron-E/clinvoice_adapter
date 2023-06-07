@@ -1,6 +1,6 @@
 use sqlx::{Executor, Result};
 use winvoice_match::MatchLocation;
-use winvoice_schema::Location;
+use winvoice_schema::{Currency, Location};
 
 use crate::{Deletable, Retrievable, Updatable};
 
@@ -17,6 +17,7 @@ pub trait LocationAdapter:
 	/// Initialize and return a new [`Location`] via the `connection`.
 	async fn create<'connection, Conn>(
 		connection: Conn,
+		currency: Option<Currency>,
 		name: String,
 		outer: Option<<Self as Deletable>::Entity>,
 	) -> Result<<Self as Deletable>::Entity>
