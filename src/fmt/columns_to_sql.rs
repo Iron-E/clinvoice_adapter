@@ -26,20 +26,20 @@ pub trait ColumnsToSql
 	///   fmt::{As, ColumnsToSql, QueryBuilderExt, SnakeCase, sql, TableToSql},
 	///   schema::columns::EmployeeColumns,
 	/// };
-	/// use winvoice_schema::Employee;
+	/// use winvoice_schema::{Id, Employee};
 	/// # use pretty_assertions::assert_eq;
 	/// use sqlx::{Execute, QueryBuilder, Postgres};
 	///
 	/// let columns = EmployeeColumns::default();
 	/// let employees = [
 	///   Employee {
-	///     id: 0, // NOTE: you normally want to avoid assigning an arbitrary ID like this
+	///     id: Id::new_v4(), // NOTE: you normally want to avoid assigning an arbitrary ID like this
 	///     name: "Bob".into(),
 	///     status: "Employed".into(),
 	///     title: "CEO".into(),
 	///   },
 	///   Employee {
-	///     id: 1, // NOTE: you normally want to avoid assigning an arbitrary ID like this
+	///     id: Id::new_v4(), // NOTE: you normally want to avoid assigning an arbitrary ID like this
 	///     name: "John".into(),
 	///     status: "Employed".into(),
 	///     title: "Janitor".into(),
