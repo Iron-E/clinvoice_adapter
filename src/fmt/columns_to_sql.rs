@@ -27,21 +27,23 @@ pub trait ColumnsToSql
 	///   schema::columns::EmployeeColumns,
 	/// };
 	/// use winvoice_schema::{Id, Employee};
-	/// # use pretty_assertions::assert_eq;
+	/// # use pretty_assertions::assert_str_eq as assert_eq;
 	/// use sqlx::{Execute, QueryBuilder, Postgres};
 	///
 	/// let columns = EmployeeColumns::default();
 	/// let employees = [
 	///   Employee {
+	///     active: true,
+	///     department: "Executive".into(),
 	///     id: Id::new_v4(), // NOTE: you normally want to avoid assigning an arbitrary ID like this
 	///     name: "Bob".into(),
-	///     status: "Employed".into(),
 	///     title: "CEO".into(),
 	///   },
 	///   Employee {
+	///     active: false,
+	///     department: "Maintenance".into(),
 	///     id: Id::new_v4(), // NOTE: you normally want to avoid assigning an arbitrary ID like this
 	///     name: "John".into(),
-	///     status: "Employed".into(),
 	///     title: "Janitor".into(),
 	///   },
 	/// ];
@@ -66,9 +68,10 @@ pub trait ColumnsToSql
 	///   .push_values(
 	///     employees.iter(),
 	///     |mut q, e| {
-	///       q.push_bind(e.id)
+	///       q.push_bind(e.active)
+	///        .push_bind(&e.department)
 	///        .push_bind(&e.name)
-	///        .push_bind(&e.status)
+	///        .push_bind(e.id)
 	///        .push_bind(&e.title);
 	///     }
 	///   )
@@ -85,8 +88,8 @@ pub trait ColumnsToSql
 	/// assert_eq!(
 	///   query.prepare().sql(),
 	///   " UPDATE employees AS E \
-	///     SET name=E_V.name,status=E_V.status,title=E_V.title \
-	///     FROM (VALUES ($1, $2, $3, $4), ($5, $6, $7, $8)) AS E_V (id,name,status,title) \
+	///     SET active=E_V.active,department=E_V.department,name=E_V.name,title=E_V.title \
+	///     FROM (VALUES ($1, $2, $3, $4, $5), ($6, $7, $8, $9, $10)) AS E_V (active,department,id,name,title) \
 	///     WHERE E.id=E_V.id;"
 	/// );
 	/// ```

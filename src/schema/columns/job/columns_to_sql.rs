@@ -16,8 +16,9 @@ where
 		query
 			.separated(',')
 			.push(self.client_id)
-			.push(self.date_open)
 			.push(self.date_close)
+			.push(self.date_open)
+			.push(self.departments)
 			.push(self.id)
 			.push(self.increment)
 			.push(self.invoice_date_issued)
@@ -36,9 +37,11 @@ where
 		query
 			.push_equal(self.client_id, values_columns.client_id)
 			.push(',')
+			.push_equal(self.date_close, values_columns.date_close)
+			.push(',')
 			.push_equal(self.date_open, values_columns.date_open)
 			.push(',')
-			.push_equal(self.date_close, values_columns.date_close)
+			.push_equal(self.departments, values_columns.departments)
 			.push(',')
 			.push_equal(self.increment, values_columns.increment)
 			.push(',')

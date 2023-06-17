@@ -17,8 +17,9 @@ pub trait EmployeeAdapter:
 	/// Initialize and return a new [`Employee`] via the `connection`.
 	async fn create<'connection, Conn>(
 		connection: Conn,
+		active: bool,
+		department: String,
 		name: String,
-		status: String,
 		title: String,
 	) -> Result<<Self as Deletable>::Entity>
 	where

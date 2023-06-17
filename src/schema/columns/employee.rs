@@ -11,14 +11,17 @@ use crate::fmt::{As, TableToSql, WithIdentifier};
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct EmployeeColumns<T = &'static str>
 {
+	/// The name of the `status` column of the `employees` table.
+	pub active: T,
+
+	/// The name of the `name` column of the `employees` table.
+	pub department: T,
+
 	/// The name of the `id` column of the `employees` table.
 	pub id: T,
 
 	/// The name of the `name` column of the `employees` table.
 	pub name: T,
-
-	/// The name of the `status` column of the `employees` table.
-	pub status: T,
 
 	/// The name of the `title` column of the `employees` table.
 	pub title: T,
@@ -36,9 +39,10 @@ impl<T> EmployeeColumns<T>
 	pub fn r#as<Alias>(self, aliased: EmployeeColumns<Alias>) -> EmployeeColumns<As<T, Alias>>
 	{
 		EmployeeColumns {
+			active: As(self.active, aliased.active),
+			department: As(self.department, aliased.department),
 			id: As(self.id, aliased.id),
 			name: As(self.name, aliased.name),
-			status: As(self.status, aliased.status),
 			title: As(self.title, aliased.title),
 		}
 	}
@@ -65,9 +69,10 @@ impl<T> EmployeeColumns<T>
 		Alias: Copy,
 	{
 		EmployeeColumns {
+			active: WithIdentifier(alias, self.active),
+			department: WithIdentifier(alias, self.department),
 			id: WithIdentifier(alias, self.id),
 			name: WithIdentifier(alias, self.name),
-			status: WithIdentifier(alias, self.status),
 			title: WithIdentifier(alias, self.title),
 		}
 	}
@@ -82,7 +87,7 @@ impl EmployeeColumns<&'static str>
 	/// * See [`EmployeeColumns::unique`].
 	pub const fn default() -> Self
 	{
-		Self { id: "id", name: "name", status: "status", title: "title" }
+		Self { active: "active", department: "department", id: "id", name: "name", title: "title" }
 	}
 
 	/// Aliases for the columns in `employees` which are guaranteed to be unique among other
@@ -109,7 +114,7 @@ impl EmployeeColumns<&'static str>
 	///       .push_more_columns(&OrganizationColumns::default().default_scope())
 	///       .prepare()
 	///       .sql(),
-	///     " SELECT E.id,E.name,E.status,E.title,O.id,O.location_id,O.name;"
+	///     " SELECT E.active,E.department,E.id,E.name,E.title,O.id,O.location_id,O.name;"
 	///   );
 	/// }
 	///
@@ -124,9 +129,10 @@ impl EmployeeColumns<&'static str>
 	///       .prepare()
 	///       .sql(),
 	///     " SELECT O.id,O.location_id,O.name,\
+	///         E.active AS unique_2_employee_active,\
+	///         E.department AS unique_2_employee_department,\
 	///         E.id AS unique_2_employee_id,\
 	///         E.name AS unique_2_employee_name,\
-	///         E.status AS unique_2_employee_status,\
 	///         E.title AS unique_2_employee_title;"
 	///   );
 	/// }
@@ -134,9 +140,10 @@ impl EmployeeColumns<&'static str>
 	pub const fn unique() -> Self
 	{
 		Self {
+			active: "unique_2_employee_active",
+			department: "unique_2_employee_department",
 			id: "unique_2_employee_id",
 			name: "unique_2_employee_name",
-			status: "unique_2_employee_status",
 			title: "unique_2_employee_title",
 		}
 	}

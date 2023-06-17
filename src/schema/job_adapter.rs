@@ -1,4 +1,5 @@
 use core::time::Duration;
+use std::collections::BTreeSet;
 
 use sqlx::{Executor, Result};
 use winvoice_match::MatchJob;
@@ -28,6 +29,7 @@ pub trait JobAdapter:
 		client: Organization,
 		date_close: Option<DateTime<Utc>>,
 		date_open: DateTime<Utc>,
+		departments: BTreeSet<String>,
 		increment: Duration,
 		invoice: Invoice,
 		notes: String,

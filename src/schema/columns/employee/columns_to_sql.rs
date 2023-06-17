@@ -13,7 +13,13 @@ where
 	where
 		Db: Database,
 	{
-		query.separated(',').push(self.id).push(self.name).push(self.status).push(self.title);
+		query
+			.separated(',')
+			.push(self.active)
+			.push(self.department)
+			.push(self.id)
+			.push(self.name)
+			.push(self.title);
 	}
 
 	fn push_set_to<Db, Values>(&self, query: &mut QueryBuilder<Db>, values_alias: Values)
@@ -23,9 +29,11 @@ where
 	{
 		let values_columns = self.scope(values_alias);
 		query
-			.push_equal(self.name, values_columns.name)
+			.push_equal(self.active, values_columns.active)
 			.push(',')
-			.push_equal(self.status, values_columns.status)
+			.push_equal(self.department, values_columns.department)
+			.push(',')
+			.push_equal(self.name, values_columns.name)
 			.push(',')
 			.push_equal(self.title, values_columns.title);
 	}
