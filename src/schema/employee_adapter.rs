@@ -17,7 +17,6 @@ pub trait EmployeeAdapter:
 	/// Initialize and return a new [`Employee`] via the `connection`.
 	async fn create<'connection, Conn>(
 		connection: Conn,
-		active: bool,
 		department: String,
 		name: String,
 		title: String,
