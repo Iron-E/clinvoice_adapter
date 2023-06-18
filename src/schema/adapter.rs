@@ -1,5 +1,6 @@
 use super::{
 	ContactAdapter,
+	DepartmentAdapter,
 	EmployeeAdapter,
 	ExpensesAdapter,
 	JobAdapter,
@@ -14,6 +15,9 @@ pub trait Adapter: Initializable
 {
 	/// The adapter for [`Contact`](winvoice_schema::Contact)s
 	type Contact: Deletable<Db = Self::Db> + ContactAdapter;
+
+	/// The adapter for [`Employee`](winvoice_schema::Employee)s
+	type Department: Deletable<Db = Self::Db> + DepartmentAdapter;
 
 	/// The adapter for [`Employee`](winvoice_schema::Employee)s
 	type Employee: Deletable<Db = Self::Db> + EmployeeAdapter;

@@ -26,7 +26,7 @@ pub trait ColumnsToSql
 	///   fmt::{As, ColumnsToSql, QueryBuilderExt, SnakeCase, sql, TableToSql},
 	///   schema::columns::EmployeeColumns,
 	/// };
-	/// use winvoice_schema::{Id, Employee};
+	/// use winvoice_schema::{Department, Id, Employee};
 	/// # use pretty_assertions::assert_str_eq as assert_eq;
 	/// use sqlx::{Execute, QueryBuilder, Postgres};
 	///
@@ -34,14 +34,14 @@ pub trait ColumnsToSql
 	/// let employees = [
 	///   Employee {
 	///     active: true,
-	///     department: "Executive".into(),
+	///     department: Department { id: Id::new_v4(), name: "Executive".into() },
 	///     id: Id::new_v4(), // NOTE: you normally want to avoid assigning an arbitrary ID like this
 	///     name: "Bob".into(),
 	///     title: "CEO".into(),
 	///   },
 	///   Employee {
 	///     active: false,
-	///     department: "Maintenance".into(),
+	///     department: Department{ id: Id::new_v4(), name: "Maintenance".into() },
 	///     id: Id::new_v4(), // NOTE: you normally want to avoid assigning an arbitrary ID like this
 	///     name: "John".into(),
 	///     title: "Janitor".into(),
@@ -69,7 +69,7 @@ pub trait ColumnsToSql
 	///     employees.iter(),
 	///     |mut q, e| {
 	///       q.push_bind(e.active)
-	///        .push_bind(&e.department)
+	///        .push_bind(&e.department.id)
 	///        .push_bind(&e.name)
 	///        .push_bind(e.id)
 	///        .push_bind(&e.title);

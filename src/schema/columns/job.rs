@@ -21,7 +21,7 @@ pub struct JobColumns<T = &'static str>
 	pub date_open: T,
 
 	/// The name of the `departments` column of the `jobs` table.
-	pub departments: T,
+	pub department_ids: T,
 
 	/// The name of the `id` column of the `jobs` table.
 	pub id: T,
@@ -60,7 +60,7 @@ impl<T> JobColumns<T>
 			client_id: As(self.client_id, aliased.client_id),
 			date_close: As(self.date_close, aliased.date_close),
 			date_open: As(self.date_open, aliased.date_open),
-			departments: As(self.departments, aliased.departments),
+			department_ids: As(self.department_ids, aliased.department_ids),
 			id: As(self.id, aliased.id),
 			increment: As(self.increment, aliased.increment),
 			invoice_date_issued: As(self.invoice_date_issued, aliased.invoice_date_issued),
@@ -96,7 +96,7 @@ impl<T> JobColumns<T>
 			client_id: WithIdentifier(alias, self.client_id),
 			date_close: WithIdentifier(alias, self.date_close),
 			date_open: WithIdentifier(alias, self.date_open),
-			departments: WithIdentifier(alias, self.departments),
+			department_ids: WithIdentifier(alias, self.department_ids),
 			id: WithIdentifier(alias, self.id),
 			increment: WithIdentifier(alias, self.increment),
 			invoice_date_issued: WithIdentifier(alias, self.invoice_date_issued),
@@ -122,7 +122,7 @@ impl<T> JobColumns<T>
 			client_id: TypeCast(self.client_id, cast),
 			date_close: TypeCast(self.date_close, cast),
 			date_open: TypeCast(self.date_open, cast),
-			departments: TypeCast(self.departments, cast),
+			department_ids: TypeCast(self.department_ids, cast),
 			id: TypeCast(self.id, cast),
 			increment: TypeCast(self.increment, cast),
 			invoice_date_issued: TypeCast(self.invoice_date_issued, cast),
@@ -147,7 +147,7 @@ impl JobColumns<&'static str>
 			client_id: "client_id",
 			date_close: "date_close",
 			date_open: "date_open",
-			departments: "departments",
+			department_ids: "department_ids",
 			id: "id",
 			increment: "increment",
 			invoice_date_issued: "invoice_date_issued",
@@ -186,7 +186,7 @@ impl JobColumns<&'static str>
 	///         J.client_id,\
 	///         J.date_close,\
 	///         J.date_open,\
-	///         J.departments,\
+	///         J.department_ids,\
 	///         J.id,\
 	///         J.increment,\
 	///         J.invoice_date_issued,\
@@ -212,7 +212,7 @@ impl JobColumns<&'static str>
 	///         J.client_id AS unique_4_job_client_id,\
 	///         J.date_close AS unique_4_job_date_close,\
 	///         J.date_open AS unique_4_job_date_open,\
-	///         J.departments AS unique_4_job_departments,\
+	///         J.department_ids AS unique_4_job_department_ids,\
 	///         J.id AS unique_4_job_id,\
 	///         J.increment AS unique_4_job_increment,\
 	///         J.invoice_date_issued AS unique_4_job_invoice_date_issued,\
@@ -229,7 +229,7 @@ impl JobColumns<&'static str>
 			client_id: "unique_4_job_client_id",
 			date_close: "unique_4_job_date_close",
 			date_open: "unique_4_job_date_open",
-			departments: "unique_4_job_departments",
+			department_ids: "unique_4_job_department_ids",
 			id: "unique_4_job_id",
 			increment: "unique_4_job_increment",
 			invoice_date_issued: "unique_4_job_invoice_date_issued",

@@ -27,6 +27,7 @@
 //! ```
 
 mod contact;
+mod department;
 mod employee;
 mod expense;
 mod job;
@@ -35,6 +36,7 @@ mod organization;
 mod timesheet;
 
 pub use contact::ContactColumns;
+pub use department::DepartmentColumns;
 pub use employee::EmployeeColumns;
 pub use expense::ExpenseColumns;
 pub use job::JobColumns;

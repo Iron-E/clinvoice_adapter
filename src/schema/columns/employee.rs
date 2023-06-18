@@ -15,7 +15,7 @@ pub struct EmployeeColumns<T = &'static str>
 	pub active: T,
 
 	/// The name of the `name` column of the `employees` table.
-	pub department: T,
+	pub department_id: T,
 
 	/// The name of the `id` column of the `employees` table.
 	pub id: T,
@@ -40,7 +40,7 @@ impl<T> EmployeeColumns<T>
 	{
 		EmployeeColumns {
 			active: As(self.active, aliased.active),
-			department: As(self.department, aliased.department),
+			department_id: As(self.department_id, aliased.department_id),
 			id: As(self.id, aliased.id),
 			name: As(self.name, aliased.name),
 			title: As(self.title, aliased.title),
@@ -70,7 +70,7 @@ impl<T> EmployeeColumns<T>
 	{
 		EmployeeColumns {
 			active: WithIdentifier(alias, self.active),
-			department: WithIdentifier(alias, self.department),
+			department_id: WithIdentifier(alias, self.department_id),
 			id: WithIdentifier(alias, self.id),
 			name: WithIdentifier(alias, self.name),
 			title: WithIdentifier(alias, self.title),
@@ -87,7 +87,13 @@ impl EmployeeColumns<&'static str>
 	/// * See [`EmployeeColumns::unique`].
 	pub const fn default() -> Self
 	{
-		Self { active: "active", department: "department", id: "id", name: "name", title: "title" }
+		Self {
+			active: "active",
+			department_id: "department",
+			id: "id",
+			name: "name",
+			title: "title",
+		}
 	}
 
 	/// Aliases for the columns in `employees` which are guaranteed to be unique among other
@@ -141,7 +147,7 @@ impl EmployeeColumns<&'static str>
 	{
 		Self {
 			active: "unique_2_employee_active",
-			department: "unique_2_employee_department",
+			department_id: "unique_2_employee_department",
 			id: "unique_2_employee_id",
 			name: "unique_2_employee_name",
 			title: "unique_2_employee_title",

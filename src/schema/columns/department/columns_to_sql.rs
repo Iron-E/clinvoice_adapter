@@ -2,10 +2,10 @@ use core::fmt::Display;
 
 use sqlx::{Database, QueryBuilder};
 
-use super::EmployeeColumns;
+use super::DepartmentColumns;
 use crate::fmt::{ColumnsToSql, QueryBuilderExt};
 
-impl<Column> ColumnsToSql for EmployeeColumns<Column>
+impl<Column> ColumnsToSql for DepartmentColumns<Column>
 where
 	Column: Copy + Display,
 {
@@ -13,13 +13,7 @@ where
 	where
 		Db: Database,
 	{
-		query
-			.separated(',')
-			.push(self.active)
-			.push(self.department_id)
-			.push(self.id)
-			.push(self.name)
-			.push(self.title);
+		query.separated(',').push(self.id).push(self.name);
 	}
 
 	fn push_set_to<Db, Values>(&self, query: &mut QueryBuilder<Db>, values_alias: Values)
@@ -27,15 +21,7 @@ where
 		Db: Database,
 		Values: Copy + Display,
 	{
-		let values_columns = self.scope(values_alias);
-		query
-			.push_equal(self.active, values_columns.active)
-			.push(',')
-			.push_equal(self.department_id, values_columns.department_id)
-			.push(',')
-			.push_equal(self.name, values_columns.name)
-			.push(',')
-			.push_equal(self.title, values_columns.title);
+		query.push_equal(self.name, self.scope(values_alias).name);
 	}
 
 	fn push_update_where_to<Db, Table, Values>(

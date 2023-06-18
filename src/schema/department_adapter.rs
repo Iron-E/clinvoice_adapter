@@ -1,25 +1,23 @@
 use sqlx::{Executor, Result};
-use winvoice_match::MatchEmployee;
-use winvoice_schema::{Department, Employee};
+use winvoice_match::MatchDepartment;
+use winvoice_schema::Department;
 
 use crate::{Deletable, Retrievable, Updatable};
 
-/// Implementors of this trait may act as an [adapter](super) for [`Employee`]s.
+/// Implementors of this trait may act as an [adapter](super) for [`Department`]s.
 #[async_trait::async_trait]
-pub trait EmployeeAdapter:
-	Deletable<Entity = Employee>
+pub trait DepartmentAdapter:
+	Deletable<Entity = Department>
 	+ Retrievable<
 		Db = <Self as Deletable>::Db,
 		Entity = <Self as Deletable>::Entity,
-		Match = MatchEmployee,
+		Match = MatchDepartment,
 	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
-	/// Initialize and return a new [`Employee`] via the `connection`.
+	/// Initialize and return a new [`Department`] via the `connection`.
 	async fn create<'connection, Conn>(
 		connection: Conn,
-		department: Department,
 		name: String,
-		title: String,
 	) -> Result<<Self as Deletable>::Entity>
 	where
 		Conn: Executor<'connection, Database = <Self as Deletable>::Db>;

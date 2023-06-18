@@ -10,6 +10,7 @@
 mod adapter;
 pub mod columns;
 mod contact_adapter;
+mod department_adapter;
 mod employee_adapter;
 mod expenses_adapter;
 mod job_adapter;
@@ -19,6 +20,7 @@ mod timesheet_adapter;
 
 pub use adapter::Adapter;
 pub use contact_adapter::ContactAdapter;
+pub use department_adapter::DepartmentAdapter;
 pub use employee_adapter::EmployeeAdapter;
 pub use expenses_adapter::ExpensesAdapter;
 pub use job_adapter::JobAdapter;
