@@ -1,7 +1,7 @@
 # See https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
 name = "winvoice-adapter"
-version = "0.24.2"
+version = "0.24.3"
 authors = ["Iron-E <code.iron.e@gmail.com>"]
 description = "Shared adapter definitions for Winvoice."
 

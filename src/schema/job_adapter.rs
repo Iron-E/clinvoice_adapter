@@ -1,7 +1,7 @@
 use core::time::Duration;
 use std::collections::BTreeSet;
 
-use sqlx::{Executor, Result};
+use sqlx::{Result, Transaction};
 use winvoice_match::MatchJob;
 use winvoice_schema::{
 	chrono::{DateTime, Utc},
@@ -25,8 +25,8 @@ pub trait JobAdapter:
 {
 	/// Initialize and return a new [`Job`] via the `connection`.
 	#[allow(clippy::too_many_arguments)]
-	async fn create<'connection, Conn>(
-		connection: Conn,
+	async fn create(
+		connection: &mut Transaction<<Self as Deletable>::Db>,
 		client: Organization,
 		date_close: Option<DateTime<Utc>>,
 		date_open: DateTime<Utc>,
@@ -35,7 +35,5 @@ pub trait JobAdapter:
 		invoice: Invoice,
 		notes: String,
 		objectives: String,
-	) -> Result<<Self as Deletable>::Entity>
-	where
-		Conn: Executor<'connection, Database = <Self as Deletable>::Db>;
+	) -> Result<<Self as Deletable>::Entity>;
 }
