@@ -5,6 +5,7 @@ use sqlx::{Executor, Result};
 use winvoice_match::MatchJob;
 use winvoice_schema::{
 	chrono::{DateTime, Utc},
+	Department,
 	Invoice,
 	Job,
 	Organization,
@@ -29,7 +30,7 @@ pub trait JobAdapter:
 		client: Organization,
 		date_close: Option<DateTime<Utc>>,
 		date_open: DateTime<Utc>,
-		departments: BTreeSet<String>,
+		departments: BTreeSet<Department>,
 		increment: Duration,
 		invoice: Invoice,
 		notes: String,
