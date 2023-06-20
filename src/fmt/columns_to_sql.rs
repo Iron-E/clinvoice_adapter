@@ -88,8 +88,8 @@ pub trait ColumnsToSql
 	/// assert_eq!(
 	///   query.prepare().sql(),
 	///   " UPDATE employees AS E \
-	///     SET active=E_V.active,department=E_V.department,name=E_V.name,title=E_V.title \
-	///     FROM (VALUES ($1, $2, $3, $4, $5), ($6, $7, $8, $9, $10)) AS E_V (active,department,id,name,title) \
+	///     SET active=E_V.active,department_id=E_V.department_id,name=E_V.name,title=E_V.title \
+	///     FROM (VALUES ($1, $2, $3, $4, $5), ($6, $7, $8, $9, $10)) AS E_V (active,department_id,id,name,title) \
 	///     WHERE E.id=E_V.id;"
 	/// );
 	/// ```

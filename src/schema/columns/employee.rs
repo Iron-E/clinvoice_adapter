@@ -89,7 +89,7 @@ impl EmployeeColumns<&'static str>
 	{
 		Self {
 			active: "active",
-			department_id: "department",
+			department_id: "department_id",
 			id: "id",
 			name: "name",
 			title: "title",
@@ -120,7 +120,7 @@ impl EmployeeColumns<&'static str>
 	///       .push_more_columns(&OrganizationColumns::default().default_scope())
 	///       .prepare()
 	///       .sql(),
-	///     " SELECT E.active,E.department,E.id,E.name,E.title,O.id,O.location_id,O.name;"
+	///     " SELECT E.active,E.department_id,E.id,E.name,E.title,O.id,O.location_id,O.name;"
 	///   );
 	/// }
 	///
@@ -136,7 +136,7 @@ impl EmployeeColumns<&'static str>
 	///       .sql(),
 	///     " SELECT O.id,O.location_id,O.name,\
 	///         E.active AS unique_2_employee_active,\
-	///         E.department AS unique_2_employee_department,\
+	///         E.department_id AS unique_2_employee_department_id,\
 	///         E.id AS unique_2_employee_id,\
 	///         E.name AS unique_2_employee_name,\
 	///         E.title AS unique_2_employee_title;"
@@ -147,7 +147,7 @@ impl EmployeeColumns<&'static str>
 	{
 		Self {
 			active: "unique_2_employee_active",
-			department_id: "unique_2_employee_department",
+			department_id: "unique_2_employee_department_id",
 			id: "unique_2_employee_id",
 			name: "unique_2_employee_name",
 			title: "unique_2_employee_title",

@@ -108,7 +108,7 @@ impl OrganizationColumns<&'static str>
 	///       .push_more_columns(&OrganizationColumns::default().default_scope())
 	///       .prepare()
 	///       .sql(),
-	///     " SELECT E.active,E.department,E.id,E.name,E.title,O.id,O.location_id,O.name;"
+	///     " SELECT E.active,E.department_id,E.id,E.name,E.title,O.id,O.location_id,O.name;"
 	///   );
 	/// }
 	///
@@ -126,7 +126,7 @@ impl OrganizationColumns<&'static str>
 	///       )
 	///       .prepare()
 	///       .sql(),
-	///     " SELECT E.active,E.department,E.id,E.name,E.title,\
+	///     " SELECT E.active,E.department_id,E.id,E.name,E.title,\
 	///         O.id AS unique_6_organization_id,\
 	///         O.location_id AS unique_6_organization_location_id,\
 	///         O.name AS unique_6_organization_name;"
