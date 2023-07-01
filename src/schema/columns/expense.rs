@@ -85,12 +85,6 @@ impl ExpenseColumns<&'static str>
 	/// The names of the columns in `expenses` without any aliasing.
 	pub const fn default() -> Self
 	{
-		Self {
-			category: "category",
-			cost: "cost",
-			description: "description",
-			id: "id",
-			timesheet_id: "timesheet_id",
-		}
+		Self { category: "category", cost: "cost", description: "description", id: "id", timesheet_id: "timesheet_id" }
 	}
 }

@@ -17,11 +17,8 @@ use crate::{Deletable, Retrievable, Updatable};
 #[async_trait::async_trait]
 pub trait JobAdapter:
 	Deletable<Entity = Job>
-	+ Retrievable<
-		Db = <Self as Deletable>::Db,
-		Entity = <Self as Deletable>::Entity,
-		Match = MatchJob,
-	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
+	+ Retrievable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity, Match = MatchJob>
+	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Job`] via the `connection`.
 	#[allow(clippy::too_many_arguments)]

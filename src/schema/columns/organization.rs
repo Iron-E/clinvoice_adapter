@@ -30,10 +30,7 @@ impl<T> OrganizationColumns<T>
 	///
 	/// * [`As`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn r#as<Alias>(
-		self,
-		aliased: OrganizationColumns<Alias>,
-	) -> OrganizationColumns<As<T, Alias>>
+	pub fn r#as<Alias>(self, aliased: OrganizationColumns<Alias>) -> OrganizationColumns<As<T, Alias>>
 	{
 		OrganizationColumns {
 			id: As(self.id, aliased.id),

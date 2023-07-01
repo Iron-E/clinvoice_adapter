@@ -16,10 +16,7 @@ pub trait Deletable
 	/// # Errors
 	///
 	/// * If any [`Self::Entity`] in `entities` does not exist over the `connection`.
-	async fn delete<'connection, 'entity, Conn, Iter>(
-		connection: Conn,
-		entities: Iter,
-	) -> Result<()>
+	async fn delete<'connection, 'entity, Conn, Iter>(connection: Conn, entities: Iter) -> Result<()>
 	where
 		Self::Entity: 'entity,
 		Conn: Executor<'connection, Database = Self::Db>,

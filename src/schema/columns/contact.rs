@@ -65,12 +65,6 @@ impl ContactColumns<&'static str>
 	/// The names of the columns in `contact_information` without any aliasing.
 	pub const fn default() -> Self
 	{
-		Self {
-			address_id: "address_id",
-			email: "email",
-			label: "label",
-			other: "other",
-			phone: "phone",
-		}
+		Self { address_id: "address_id", email: "email", label: "label", other: "other", phone: "phone" }
 	}
 }

@@ -8,11 +8,8 @@ use crate::{Deletable, Retrievable, Updatable};
 #[async_trait::async_trait]
 pub trait ExpensesAdapter:
 	Deletable<Entity = Expense>
-	+ Retrievable<
-		Db = <Self as Deletable>::Db,
-		Entity = <Self as Deletable>::Entity,
-		Match = MatchExpense,
-	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
+	+ Retrievable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity, Match = MatchExpense>
+	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return new [`Expense`]s via the `connection`.
 	///

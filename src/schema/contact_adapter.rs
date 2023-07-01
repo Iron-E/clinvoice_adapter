@@ -8,11 +8,8 @@ use crate::{Deletable, Retrievable, Updatable};
 #[async_trait::async_trait]
 pub trait ContactAdapter:
 	Deletable<Entity = Contact>
-	+ Retrievable<
-		Db = <Self as Deletable>::Db,
-		Entity = <Self as Deletable>::Entity,
-		Match = MatchContact,
-	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
+	+ Retrievable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity, Match = MatchContact>
+	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize all of the [`Contact`]s in `contact_info` via the `connection`.
 	///

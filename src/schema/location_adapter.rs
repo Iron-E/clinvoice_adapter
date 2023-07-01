@@ -8,11 +8,8 @@ use crate::{Deletable, Retrievable, Updatable};
 #[async_trait::async_trait]
 pub trait LocationAdapter:
 	Deletable<Entity = Location>
-	+ Retrievable<
-		Db = <Self as Deletable>::Db,
-		Entity = <Self as Deletable>::Entity,
-		Match = MatchLocation,
-	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
+	+ Retrievable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity, Match = MatchLocation>
+	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Location`] via the `connection`.
 	async fn create<'connection, Conn>(

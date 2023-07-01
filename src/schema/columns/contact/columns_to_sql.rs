@@ -13,13 +13,7 @@ where
 	where
 		Db: Database,
 	{
-		query
-			.separated(',')
-			.push(self.address_id)
-			.push(self.email)
-			.push(self.label)
-			.push(self.other)
-			.push(self.phone);
+		query.separated(',').push(self.address_id).push(self.email).push(self.label).push(self.other).push(self.phone);
 	}
 
 	fn push_set_to<Db, Values>(&self, query: &mut QueryBuilder<Db>, values_alias: Values)

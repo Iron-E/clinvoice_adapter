@@ -87,13 +87,7 @@ impl EmployeeColumns<&'static str>
 	/// * See [`EmployeeColumns::unique`].
 	pub const fn default() -> Self
 	{
-		Self {
-			active: "active",
-			department_id: "department_id",
-			id: "id",
-			name: "name",
-			title: "title",
-		}
+		Self { active: "active", department_id: "department_id", id: "id", name: "name", title: "title" }
 	}
 
 	/// Aliases for the columns in `employees` which are guaranteed to be unique among other

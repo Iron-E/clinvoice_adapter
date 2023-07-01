@@ -53,10 +53,7 @@ impl<T> DepartmentColumns<T>
 	where
 		Alias: Copy,
 	{
-		DepartmentColumns {
-			id: WithIdentifier(alias, self.id),
-			name: WithIdentifier(alias, self.name),
-		}
+		DepartmentColumns { id: WithIdentifier(alias, self.id), name: WithIdentifier(alias, self.name) }
 	}
 }
 

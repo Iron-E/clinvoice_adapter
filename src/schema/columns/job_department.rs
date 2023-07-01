@@ -27,10 +27,7 @@ impl<T> JobDepartmentColumns<T>
 	///
 	/// * [`As`]
 	#[allow(clippy::missing_const_for_fn)]
-	pub fn r#as<Alias>(
-		self,
-		aliased: JobDepartmentColumns<Alias>,
-	) -> JobDepartmentColumns<As<T, Alias>>
+	pub fn r#as<Alias>(self, aliased: JobDepartmentColumns<Alias>) -> JobDepartmentColumns<As<T, Alias>>
 	{
 		JobDepartmentColumns {
 			department_id: As(self.department_id, aliased.department_id),
@@ -82,9 +79,6 @@ impl JobDepartmentColumns<&'static str>
 	/// [`columns`](super)'s `unique` aliases.
 	pub const fn unique() -> Self
 	{
-		Self {
-			department_id: "unique_8_job_department_department_id",
-			job_id: "unique_8_job_department_job_id",
-		}
+		Self { department_id: "unique_8_job_department_department_id", job_id: "unique_8_job_department_job_id" }
 	}
 }

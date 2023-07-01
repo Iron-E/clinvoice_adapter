@@ -14,11 +14,8 @@ use crate::{Deletable, Retrievable, Updatable};
 #[async_trait::async_trait]
 pub trait TimesheetAdapter:
 	Deletable<Entity = Timesheet>
-	+ Retrievable<
-		Db = <Self as Deletable>::Db,
-		Entity = <Self as Deletable>::Entity,
-		Match = MatchTimesheet,
-	> + Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
+	+ Retrievable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity, Match = MatchTimesheet>
+	+ Updatable<Db = <Self as Deletable>::Db, Entity = <Self as Deletable>::Entity>
 {
 	/// Initialize and return a new [`Timesheet`] via the `connection`. Will not
 	/// [`commit`](Transaction::commit) changes.

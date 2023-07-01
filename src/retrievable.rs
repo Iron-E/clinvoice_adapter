@@ -14,8 +14,5 @@ pub trait Retrievable
 	type Match;
 
 	/// Retrieve all [`Contact`]s (via `connection`) that match the `match_condition`.
-	async fn retrieve(
-		connection: &Pool<Self::Db>,
-		match_condition: Self::Match,
-	) -> Result<Vec<Self::Entity>>;
+	async fn retrieve(connection: &Pool<Self::Db>, match_condition: Self::Match) -> Result<Vec<Self::Entity>>;
 }

@@ -31,8 +31,8 @@ where
 		Values: Copy + Display,
 	{
 		unimplemented!(
-			"This table has only two keys, and they comprise the primary key. No row should be \
-			 updated, only `INSERT`ed or `DELETE`d"
+			"This table has only two keys, and they comprise the primary key. No row should be updated, only \
+			 `INSERT`ed or `DELETE`d"
 		);
 	}
 }
