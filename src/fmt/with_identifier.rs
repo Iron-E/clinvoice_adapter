@@ -7,8 +7,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// # Warnings
 ///
-/// * `Column`'s and `Ident`'s [`to_string`](ToString::to_string) output be non-empty to format
-///   correctly.
+/// * `Column`'s and `Ident`'s [`to_string`](ToString::to_string) output be non-empty to format correctly.
 ///
 /// # Example
 ///

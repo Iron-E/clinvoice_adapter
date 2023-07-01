@@ -7,8 +7,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// # Warnings
 ///
-/// * `TAs`'s and `TIdent`'s [`to_string`](ToString::to_string) output be non-empty to format
-///   correctly.
+/// * `TAs`'s and `TIdent`'s [`to_string`](ToString::to_string) output be non-empty to format correctly.
 ///
 /// # Example
 ///
