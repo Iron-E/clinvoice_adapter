@@ -1,6 +1,11 @@
 use sqlx::{Executor, Result};
 use winvoice_match::MatchExpense;
-use winvoice_schema::{Expense, Id, Money};
+use winvoice_schema::{
+	chrono::{DateTime, Utc},
+	Expense,
+	Id,
+	Money,
+};
 
 use crate::{Deletable, Retrievable, Updatable};
 
@@ -21,6 +26,7 @@ pub trait ExpensesAdapter:
 		connection: Conn,
 		expenses: Vec<(String, Money, String)>,
 		timesheet_id: Id,
+		timesheet_time_begin: DateTime<Utc>,
 	) -> Result<Vec<Expense>>
 	where
 		Conn: Executor<'connection, Database = <Self as Deletable>::Db>;
