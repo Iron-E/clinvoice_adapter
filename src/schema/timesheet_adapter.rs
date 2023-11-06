@@ -19,6 +19,11 @@ pub trait TimesheetAdapter:
 {
 	/// Initialize and return a new [`Timesheet`] via the `connection`. Will not
 	/// [`commit`](Transaction::commit) changes.
+	///
+	/// # Parameters
+	///
+	/// * `expenses` is a list of `(String, Money, String)`, which represents `(category, cost, description)` for the
+	///   created [`Expense`]s.
 	async fn create(
 		connection: &mut Transaction<<Self as Deletable>::Db>,
 		employee: Employee,

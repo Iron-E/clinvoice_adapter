@@ -20,13 +20,12 @@ pub trait ExpensesAdapter:
 	///
 	/// # Parameters
 	///
-	/// `expenses` is a slice of `(String, Money, String)`, which represents `(category, cost,
-	/// description)` for the created [`Expense`]s.
+	/// * `expenses` is a list of `(String, Money, String)`, which represents `(category, cost, description)` for the
+	///   created [`Expense`]s.
 	async fn create<'connection, Conn>(
 		connection: Conn,
 		expenses: Vec<(String, Money, String)>,
-		timesheet_id: Id,
-		timesheet_time_begin: DateTime<Utc>,
+		timesheet: (Id, DateTime<Utc>),
 	) -> Result<Vec<Expense>>
 	where
 		Conn: Executor<'connection, Database = <Self as Deletable>::Db>;
